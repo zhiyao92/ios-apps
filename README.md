@@ -16,7 +16,7 @@ Beyond technical prowess, Kelvin places a strong emphasis on honing his soft ski
 
 Inspired by my marriage to a Thai woman and my desire to deeply understand Thai culture, I created Bo: Learn Thai—an app that not only simplifies learning the language with authentic pronunciation and extensive vocabulary but also immerses users in Thai culture, including its rich culinary heritage, making communication and cultural appreciation seamless and enjoyable.
 
-![Bo - Learn Thai](https://github.com/zhiyao92/ios-apps/blob/main/Screenshots/Bo%20-%20Learn%20Thai.png)
+![Bo - Learn Thai](https://raw.githubusercontent.com/zhiyao92/ios-apps/main/Screenshots/Bo%20-%20Learn%20Thai.png)
 
 
 ## [Odin - Financial Assistant](https://apps.apple.com/us/app/odin-financial-assistant/id1538554089)
