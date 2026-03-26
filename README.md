@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/zhiyao92/ios-apps/blob/main/profile-picture.png?raw=true" width="200" height="200">
+  <img src="https://github.com/zhiyao92/ios-apps/blob/main/profile-picture.png?raw=true" width="180">
 </p>
 <h2 align="center">Kelvin Tan</h2>
 <p align="left">Kelvin's app development philosophy centers on prioritizing user experience at every turn. With extensive involvement in numerous end-to-end journey discussions, he's adept at tackling complex issues and crafting solutions that not only address user feedback but also maintain an unwavering commitment to code quality. A staunch advocate for maintainability, scalability, testability, and code readability, Kelvin has dedicated substantial time to researching and experimenting with various best practices and architecture patterns.
