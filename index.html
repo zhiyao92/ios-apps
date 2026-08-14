@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Kelvin Tan — iOS Apps</title>
+<meta name="description" content="Independent iOS developer. Nine apps on the App Store — language learning, personal finance, everyday safety, and things that make a decision easier." />
+<meta name="author" content="Zhi Yao Tan" />
+<link rel="icon" href="icons/beam.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Kelvin Tan — iOS Apps" />
+<meta property="og:description" content="Independent iOS developer. Nine apps on the App Store — language learning, personal finance, everyday safety, and things that make a decision easier." />
+<meta property="og:url" content="https://zhiyao92.github.io/ios-apps/" />
+<meta property="og:image" content="https://zhiyao92.github.io/ios-apps/avatar.jpg" />
+<meta name="twitter:card" content="summary" />
+
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --surface: #f6f6f8;
+    --text: #14151a;
+    --text-secondary: #5b6072;
+    --text-tertiary: #8a8fa3;
+    --accent: #A36CFF;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d0d12;
+      --surface: #15161d;
+      --text: #f3f4f8;
+      --text-secondary: #9aa0b3;
+      --text-tertiary: #6f7488;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: 88px 0 56px;
+    text-align: center;
+  }
+  .hero img {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+    border: 1px solid var(--border);
+    display: block;
+    margin: 0 auto 22px;
+  }
+  .hero h1 {
+    margin: 0 0 12px;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .hero p {
+    margin: 0 auto;
+    max-width: 46ch;
+    color: var(--text-secondary);
+    font-size: 17px;
+  }
+  .social {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .social a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .social a:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+
+  /* ---------- section label ---------- */
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 24px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ---------- app grid ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .card-head img {
+    width: 56px;
+    height: 56px;
+    border-radius: 13px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    margin: 0 0 2px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+  }
+  .card p {
+    margin: 0 0 18px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-size: 13px;
+    font-weight: 650;
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: opacity .15s ease, border-color .15s ease;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { opacity: .88; }
+  .btn-ghost {
+    border-color: var(--border-strong);
+    color: var(--text-secondary);
+  }
+  .btn-ghost:hover { color: var(--text); }
+
+  /* ---------- footer ---------- */
+  footer {
+    margin-top: 40px;
+    padding: 34px 0 56px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .footer-links a { color: var(--text-secondary); }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 680px) {
+    .hero { padding: 60px 0 44px; }
+    .hero h1 { font-size: 28px; }
+    .grid { grid-template-columns: 1fr; }
+    footer { justify-content: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="hero">
+    <img src="avatar.jpg" alt="Kelvin Tan" />
+    <h1>Kelvin Tan</h1>
+    <p>
+      Independent iOS developer. I build small, focused apps that solve one
+      problem properly — and ship them myself, end to end.
+    </p>
+    <nav class="social">
+      <a href="https://apps.apple.com/us/developer/zhi-yao-tan/id1161829106" target="_blank" rel="noopener">App Store</a>
+      <a href="https://www.linkedin.com/in/kelvin-tan-31119133/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/KelvinTanZY/" target="_blank" rel="noopener">X</a>
+      <a href="https://medium.com/@kelvintanzy" target="_blank" rel="noopener">Medium</a>
+      <a href="https://github.com/zhiyao92" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </section>
+
+  <p class="label">Apps</p>
+
+  <main class="grid">
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/beam.png" alt="" />
+        <div>
+          <h2>Beam</h2>
+          <div class="tag">Learn Thai &amp; Speak It</div>
+        </div>
+      </div>
+      <p>
+        Thai has five tones, and most apps quietly skip them — which is why you
+        can study for months and still not be understood. Beam drills tones with
+        visual pitch guides, scores your pronunciation out loud, and puts you in
+        real conversations: ordering food, taking a taxi, bargaining.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/beam-learn-thai-speak-it/id6480093061" target="_blank" rel="noopener">App Store</a>
+        <a class="btn btn-ghost" href="https://zhiyao92.github.io/beam-landing/" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/odin-finance.png" alt="" />
+        <div>
+          <h2>Odin Finance</h2>
+          <div class="tag">Loans &amp; Budget</div>
+        </div>
+      </div>
+      <p>
+        Before you sign a 30-year loan, it helps to see what it actually costs.
+        Thirty-plus calculators — home and car loans, refinancing, compound
+        interest, retirement, emergency funds — each with a clear breakdown and
+        a chart, so the number stops being abstract.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/odin-finance-loans-budget/id1538554089" target="_blank" rel="noopener">App Store</a>
+        <a class="btn btn-ghost" href="https://zhiyao92.github.io/provision-landing/" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/malaysia-pocket.png" alt="" />
+        <div>
+          <h2>Malaysia Pocket</h2>
+          <div class="tag">Emergency, Safety &amp; Rights</div>
+        </div>
+      </div>
+      <p>
+        The moment something goes wrong is the worst time to start googling.
+        One-tap emergency services, your rights in plain language, step-by-step
+        guides for the situations that catch people out, and deadline tracking
+        so nothing lapses while you wait.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/malaysia-pocket/id1504421248" target="_blank" rel="noopener">App Store</a>
+        <a class="btn btn-ghost" href="https://zhiyao92.github.io/malaysia-pocket-landing/" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/lds-quotes.png" alt="" />
+        <div>
+          <h2>LDS Quotes</h2>
+          <div class="tag">Daily Inspiration</div>
+        </div>
+      </div>
+      <p>
+        A quiet moment with the words of prophets and apostles, every morning.
+        Tell it how your heart feels and For You gathers quotes to match —
+        comfort on heavy days, courage when you need it. Home Screen widgets,
+        beautiful themes, every quote verified.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/lds-quotes-daily-inspiration/id1506121689" target="_blank" rel="noopener">App Store</a>
+        <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-quotes-landing/" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/bondify.png" alt="" />
+        <div>
+          <h2>Bondify</h2>
+          <div class="tag">The Couples Edition</div>
+        </div>
+      </div>
+      <p>
+        The right question beats small talk every time. Eight curated card decks
+        — from playful to genuinely deep — for a first date, an anniversary, or
+        an ordinary evening that deserves better than two people scrolling on
+        the same couch.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/whirl.png" alt="" />
+        <div>
+          <h2>Whirl</h2>
+          <div class="tag">Decision Roulette</div>
+        </div>
+      </div>
+      <p>
+        "What do you want to eat?" "I don't know, what do you want?" Whirl ends
+        that loop in one tap. Spin a custom wheel for anything, or let it pick
+        from the top-rated places actually near you — ratings, photos and
+        details included.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/whirl-decision-roulette/id6760835509" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/instantmessage.png" alt="" />
+        <div>
+          <h2>InstantMessage</h2>
+          <div class="tag">No-Save Chat</div>
+        </div>
+      </div>
+      <p>
+        Message any number without adding it to your contacts first. Type the
+        number, write the message, send it through WhatsApp, Telegram, Viber,
+        Line, WeChat or SMS. Your address book stays clean — and a personal QR
+        code lets people reach you just as fast.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/instantmessage-no-save-chat/id1540915370" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/lds-priesthood.png" alt="" />
+        <div>
+          <h2>LDS Priesthood</h2>
+          <div class="tag">Ordinances</div>
+        </div>
+      </div>
+      <p>
+        Being asked to serve shouldn't mean scrambling to remember the wording.
+        Every ordinance and blessing in your pocket — sacrament prayers word for
+        word, baptism, confirmation, administering to the sick — following the
+        General Handbook exactly, in multiple languages.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/lds-priesthood-ordinances/id1502509285" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <img src="icons/lds-conferences.png" alt="" />
+        <div>
+          <h2>LDS Conferences</h2>
+          <div class="tag">Talks &amp; Live Sessions</div>
+        </div>
+      </div>
+      <p>
+        General Conference wherever you are — live broadcasts, session
+        summaries, conference music, newly announced temples, and an archive of
+        talks reaching back to the 19th century. Plus a countdown to the next
+        one, for the people who count.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/lds-conferences/id1483787977" target="_blank" rel="noopener">App Store</a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <div>&copy; 2026 Zhi Yao Tan (DaddyCoding)</div>
+    <nav class="footer-links">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-and-condition.html">Terms</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="mailto:kelvin.vins@gmail.com">Email</a>
+    </nav>
+  </footer>
+
+</div>
+
+</body>
+</html>
