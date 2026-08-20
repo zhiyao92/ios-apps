@@ -35,7 +35,7 @@ two URLs.
 | LDS Quotes: Daily Inspiration | [Open](https://apps.apple.com/us/app/lds-quotes-daily-inspiration/id1506121689) | [lds-quotes-landing](https://zhiyao92.github.io/lds-quotes-landing/) |
 | Bondify: The Couples Edition | [Open](https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667) | — |
 | Whirl: Decision Roulette | [Open](https://apps.apple.com/us/app/whirl-decision-roulette/id6760835509) | — |
-| InstantMessage: No-Save Chat | [Open](https://apps.apple.com/us/app/instantmessage-no-save-chat/id1540915370) | — |
+| InstantMessage: No-Save Chat | [Open](https://apps.apple.com/us/app/instantmessage-no-save-chat/id1540915370) | [quickapp-landing](https://zhiyao92.github.io/quickapp-landing/) |
 | LDS Priesthood: Ordinances | [Open](https://apps.apple.com/us/app/lds-priesthood-ordinances/id1502509285) | — |
 | LDS Conferences | [Open](https://apps.apple.com/us/app/lds-conferences/id1483787977) | — |
 
