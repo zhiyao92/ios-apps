@@ -283,11 +283,49 @@
   }
 
   /* ---------- app grid ---------- */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+  /* ---------- apps timeline ---------- */
+  .timeline {
     padding-bottom: 24px;
+  }
+  .timeline-row {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .timeline-row:last-child { align-items: flex-start; }
+  .timeline-year {
+    flex: 0 0 52px;
+    padding-top: 22px;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-tertiary);
+    text-align: right;
+  }
+  .timeline-marker {
+    flex: 0 0 2px;
+    position: relative;
+    background: var(--border);
+  }
+  .timeline-row:last-child .timeline-marker {
+    flex: 0 0 36px;
+    height: 36px;
+    align-self: flex-start;
+  }
+  .timeline-dot {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .timeline-content {
+    flex: 1;
+    min-width: 0;
+    padding-bottom: 20px;
   }
   .card {
     display: flex;
@@ -400,7 +438,8 @@
     .stat-lbl { font-size: 11px; }
     .tabs { margin: 28px 0 22px; gap: 8px; flex-wrap: wrap; }
     .tab-btn { font-size: 13px; padding: 8px 16px; }
-    .grid { grid-template-columns: 1fr; gap: 12px; }
+    .timeline-row { gap: 10px; }
+    .timeline-year { flex-basis: 38px; font-size: 11.5px; padding-top: 20px; }
     .skills-grid { grid-template-columns: 1fr; gap: 12px; }
     .card, .skill-card, .role-card { padding: 18px 20px; }
     .card-head img { width: 48px; height: 48px; }
@@ -481,8 +520,12 @@
 
   <p class="label">Apps</p>
 
-  <main class="grid">
+  <main class="timeline">
 
+    <div class="timeline-row">
+      <div class="timeline-year">2019</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/lds-conferences.png" alt="" />
@@ -503,7 +546,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-conferences-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/lds-priesthood.png" alt="" />
@@ -524,7 +573,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-priesthood-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/malaysia-pocket.png" alt="" />
@@ -545,7 +600,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/malaysia-pocket-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/lds-quotes.png" alt="" />
@@ -566,7 +627,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-quotes-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/instantmessage.png" alt="" />
@@ -586,7 +653,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/quickapp-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/provision.png" alt="" />
@@ -606,7 +679,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/provision-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/beam.png" alt="" />
@@ -627,7 +706,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/beam-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/dishspin.png" alt="" />
@@ -647,7 +732,13 @@
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/dishspin-landing/" target="_blank" rel="noopener">Learn more</a>
       </div>
     </article>
+      </div>
+    </div>
 
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
     <article class="card">
       <div class="card-head">
         <img src="icons/bondify.png" alt="" />
@@ -666,6 +757,8 @@
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667" target="_blank" rel="noopener">App Store</a>
       </div>
     </article>
+      </div>
+    </div>
 
   </main>
 
