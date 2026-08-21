@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Kelvin Tan — iOS Apps</title>
-<meta name="description" content="Independent iOS developer. Nine apps on the App Store — language learning, personal finance, everyday safety, and things that make a decision easier." />
+<title>Kelvin Tan — iOS Developer, 9 Apps, 120K+ Downloads</title>
+<meta name="description" content="Independent iOS developer since 2016. 9 apps shipped, 120K+ downloads. Swift &amp; SwiftUI — see the apps, work experience and certifications." />
 <meta name="author" content="Zhi Yao Tan" />
 <link rel="icon" href="favicon.png" />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Kelvin Tan — iOS Apps" />
-<meta property="og:description" content="Independent iOS developer. Nine apps on the App Store — language learning, personal finance, everyday safety, and things that make a decision easier." />
+<meta property="og:title" content="Kelvin Tan — iOS Developer, 9 Apps, 120K+ Downloads" />
+<meta property="og:description" content="Independent iOS developer since 2016. 9 apps shipped, 120K+ downloads. Swift &amp; SwiftUI — see the apps, work experience and certifications." />
 <meta property="og:url" content="https://zhiyao92.github.io/ios-apps/" />
 <meta property="og:image" content="https://zhiyao92.github.io/ios-apps/avatar.jpg" />
 <meta name="twitter:card" content="summary" />
@@ -85,6 +85,27 @@
     max-width: 46ch;
     color: var(--text-secondary);
     font-size: 17px;
+  }
+  .cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 9px 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: 999px;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .cta-badge:hover { transform: scale(1.03); background: color-mix(in srgb, var(--accent) 18%, transparent); }
+  .cta-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #34C759;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #34C759 25%, transparent);
+    flex-shrink: 0;
   }
   .social {
     margin-top: 26px;
@@ -405,6 +426,9 @@
       Professional problem-solver. Unofficial overthinker. I turn daily
       annoyances into apps so you don’t have to deal with them. 📱
     </p>
+    <a class="cta-badge" href="mailto:kelvin.vins@gmail.com">
+      <span class="cta-dot"></span> Open to opportunities &mdash; let&rsquo;s talk
+    </a>
     <nav class="social">
       <a href="https://apps.apple.com/us/developer/zhi-yao-tan/id1161829106" target="_blank" rel="noopener">App Store</a>
       <a href="https://www.linkedin.com/in/kelvin-tan-31119133/" target="_blank" rel="noopener">LinkedIn</a>
@@ -426,8 +450,8 @@
 
   <div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="apps" role="tab" aria-selected="true">Apps</button>
-    <button class="tab-btn" data-tab="resume" role="tab" aria-selected="false">Experience</button>
-    <button class="tab-btn" data-tab="certs" role="tab" aria-selected="false">Certificates</button>
+    <button class="tab-btn" data-tab="experience" role="tab" aria-selected="false">Experience</button>
+    <button class="tab-btn" data-tab="certificates" role="tab" aria-selected="false">Certificates</button>
   </div>
 
   <div id="tab-apps" class="tab-panel active">
@@ -624,7 +648,7 @@
 
   </div>
 
-  <div id="tab-resume" class="tab-panel">
+  <div id="tab-experience" class="tab-panel">
 
     <p class="label">Experience</p>
     <div class="role-list">
@@ -762,7 +786,7 @@
 
   </div>
 
-  <div id="tab-certs" class="tab-panel">
+  <div id="tab-certificates" class="tab-panel">
 
     <p class="label">Certificates</p>
     <div class="skills-grid certs-grid">
@@ -875,17 +899,31 @@
 </div>
 
 <script>
-  document.querySelectorAll('.tab-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.tab-btn').forEach(function (b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  function activateTab(name, pushHash) {
+    var btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
+    var panel = document.getElementById('tab-' + name);
+    if (!btn || !panel) return false;
+    document.querySelectorAll('.tab-btn').forEach(function (b) {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
+    document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    panel.classList.add('active');
+    if (pushHash) history.replaceState(null, '', '#' + name);
+    return true;
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { activateTab(btn.dataset.tab, true); });
+  });
+
+  // Deep link: /#experience or /#certificates opens straight to that tab.
+  var initial = window.location.hash.replace('#', '');
+  if (initial) activateTab(initial, false);
+  window.addEventListener('hashchange', function () {
+    activateTab(window.location.hash.replace('#', ''), false);
   });
 </script>
 
