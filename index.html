@@ -6,7 +6,7 @@
 <title>Kelvin Tan — iOS Apps</title>
 <meta name="description" content="Independent iOS developer. Nine apps on the App Store — language learning, personal finance, everyday safety, and things that make a decision easier." />
 <meta name="author" content="Zhi Yao Tan" />
-<link rel="icon" href="icons/beam.png" />
+<link rel="icon" href="favicon.png" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kelvin Tan — iOS Apps" />
@@ -193,7 +193,12 @@
     border: 1px solid var(--border);
     border-radius: 18px;
   }
-  .role-head { margin-bottom: 14px; }
+  .role-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .role-logo {
+    width: 44px; height: 44px; border-radius: 12px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
   .role-head h3 {
     margin: 0 0 4px;
     font-size: 16px;
@@ -226,6 +231,12 @@
 
   /* ---------- certificates ---------- */
   .certs-grid { align-items: start; }
+  .cert-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  .cert-logo {
+    width: 40px; height: 40px; border-radius: 11px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
   .certs-grid .skill-card h3 { font-size: 15px; }
   .cert-issuer { font-size: 13.5px; font-weight: 600; color: var(--text-secondary); margin-top: 2px; }
   .cert-meta { font-size: 12.5px; color: var(--text-tertiary); margin-top: 6px; }
@@ -365,6 +376,7 @@
     .skills-grid { grid-template-columns: 1fr; gap: 12px; }
     .card, .skill-card, .role-card { padding: 18px 20px; }
     .card-head img { width: 48px; height: 48px; }
+    .role-logo, .cert-logo { width: 36px; height: 36px; }
     footer { justify-content: center; text-align: center; }
   }
 
@@ -397,7 +409,7 @@
     <div class="stats-strip">
       <div class="stat-item"><span class="stat-num">9</span><span class="stat-lbl">Apps shipped</span></div>
       <div class="stat-dot">&middot;</div>
-      <div class="stat-item"><span class="stat-num">2019</span><span class="stat-lbl">Building since</span></div>
+      <div class="stat-item"><span class="stat-num">2016</span><span class="stat-lbl">Building since</span></div>
       <div class="stat-dot">&middot;</div>
       <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lbl">Swift &amp; SwiftUI</span></div>
     </div>
@@ -605,9 +617,12 @@
 
       <article class="role-card">
         <div class="role-head">
+          <img class="role-logo" src="icons/logos/move.png" alt="" />
+          <div>
           <h3>Software Engineer</h3>
           <div class="role-meta">MOVE &middot; Full-time</div>
           <div class="role-dates">Oct 2022 &ndash; Present &middot; 3 yrs 11 mos</div>
+          </div>
         </div>
         <ul class="role-bullets">
           <li>Technology stack comprises Swift, SwiftUI, Combine and Kotlin Multiplatform (KMP), all integrated with the MVVM-C architecture.</li>
@@ -617,9 +632,12 @@
 
       <article class="role-card">
         <div class="role-head">
+          <img class="role-logo" src="icons/logos/daddycoding.png" alt="" />
+          <div>
           <h3>Software Engineer, iOS</h3>
           <div class="role-meta">DaddyCoding</div>
           <div class="role-dates">Oct 2016 &ndash; Present &middot; 9 yrs 11 mos</div>
+          </div>
         </div>
         <ul class="role-bullets">
           <li>Use Swift to experiment with emerging technologies and integrate them into practical, shipped iOS applications.</li>
@@ -636,9 +654,12 @@
 
       <article class="role-card">
         <div class="role-head">
+          <img class="role-logo" src="icons/logos/quickget.png" alt="" />
+          <div>
           <h3>Software Engineer, iOS</h3>
           <div class="role-meta">Quickget &middot; Full-time</div>
           <div class="role-dates">Feb 2022 &ndash; Oct 2022 &middot; 9 mos</div>
+          </div>
         </div>
         <ul class="role-bullets">
           <li>Technology stack comprised RxSwift, RxRealm, GraphQL, SwiftUI, Combine and Xcode Cloud, integrated with the MVVM architecture.</li>
@@ -655,9 +676,12 @@
 
       <article class="role-card">
         <div class="role-head">
+          <img class="role-logo" src="icons/logos/astro.png" alt="" />
+          <div>
           <h3>Software Engineer, iOS</h3>
           <div class="role-meta">Astro</div>
           <div class="role-dates">Mar 2020 &ndash; Feb 2022 &middot; 2 yrs</div>
+          </div>
         </div>
         <ul class="role-bullets">
           <li>Technology stack built around RxSwift with the MVVM-C architectural pattern.</li>
@@ -674,9 +698,12 @@
 
       <article class="role-card">
         <div class="role-head">
+          <img class="role-logo" src="icons/logos/kaodim.png" alt="" />
+          <div>
           <h3>Software Engineer, iOS</h3>
           <div class="role-meta">Kaodim</div>
           <div class="role-dates">Sep 2018 &ndash; Mar 2020 &middot; 1 yr 7 mos</div>
+          </div>
         </div>
         <ul class="role-bullets">
           <li>Technology stack centred on Swift with the MVVM architectural pattern.</li>
@@ -726,54 +753,94 @@
     <p class="label">Certificates</p>
     <div class="skills-grid certs-grid">
 
-      <div class="skill-card">
-        <h3>Generative AI Leader Certification</h3>
-        <div class="cert-issuer">Google</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/google.png" alt="" />
+          <div>
+            <h3>Generative AI Leader Certification</h3>
+            <div class="cert-issuer">Google</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued Jul 2026 &middot; Expires Jul 2029</div>
         <div class="cert-id">Credential ID e778196d-152f-4d51-81c9-469402c83614</div>
       </div>
 
-      <div class="skill-card">
-        <h3>Generative AI &ndash; AI Transformation Lead Program</h3>
-        <div class="cert-issuer">Academy by AirAsia Next</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/airasia-next.png" alt="" />
+          <div>
+            <h3>Generative AI &ndash; AI Transformation Lead Program</h3>
+            <div class="cert-issuer">Academy by AirAsia Next</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued May 2026</div>
       </div>
 
-      <div class="skill-card">
-        <h3>Generative AI &ndash; English</h3>
-        <div class="cert-issuer">Academy by AirAsia Next</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/airasia-next.png" alt="" />
+          <div>
+            <h3>Generative AI &ndash; English</h3>
+            <div class="cert-issuer">Academy by AirAsia Next</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued May 2026</div>
       </div>
 
-      <div class="skill-card">
-        <h3>Google Cloud Certified Professional Cloud DevOps Engineer</h3>
-        <div class="cert-issuer">Google</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/google.png" alt="" />
+          <div>
+            <h3>Google Cloud Certified Professional Cloud DevOps Engineer</h3>
+            <div class="cert-issuer">Google</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued Jan 2026 &middot; Expires Jan 2028</div>
         <div class="cert-id">Credential ID c8886665ed56448caa760d05fc111262</div>
       </div>
 
-      <div class="skill-card">
-        <h3>CompTIA Security+ (SY0-601) Cert Prep: 2 Secure Code Design and Implementation</h3>
-        <div class="cert-issuer">LinkedIn</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/linkedin.png" alt="" />
+          <div>
+            <h3>CompTIA Security+ (SY0-601) Cert Prep: 2 Secure Code Design and Implementation</h3>
+            <div class="cert-issuer">LinkedIn</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued Oct 2021</div>
         <div class="cert-id">Credential ID Aa9YZq17l_cZzhUhagdWZhktjY4F</div>
       </div>
 
-      <div class="skill-card">
-        <h3>Launching Leaders</h3>
-        <div class="cert-issuer">BYU Management Society (Global)</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/byu.png" alt="" />
+          <div>
+            <h3>Launching Leaders</h3>
+            <div class="cert-issuer">BYU Management Society (Global)</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued Oct 2022</div>
       </div>
 
-      <div class="skill-card">
-        <h3>#KnowTheSign Anti-Trafficking Training</h3>
-        <div class="cert-issuer">AirAsia Foundation</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/airasia-foundation.png" alt="" />
+          <div>
+            <h3>#KnowTheSign Anti-Trafficking Training</h3>
+            <div class="cert-issuer">AirAsia Foundation</div>
+          </div>
+        </div>
         <div class="cert-meta">Issued Oct 2022</div>
       </div>
 
-      <div class="skill-card">
-        <h3>PC Pro Certification</h3>
-        <div class="cert-issuer">TestOut Corporation</div>
+      <div class="skill-card cert-card">
+        <div class="cert-head">
+          <img class="cert-logo" src="icons/logos/testout.png" alt="" />
+          <div>
+            <h3>PC Pro Certification</h3>
+            <div class="cert-issuer">TestOut Corporation</div>
+          </div>
+        </div>
         <div class="cert-id">Credential ID C2VJT</div>
       </div>
 
