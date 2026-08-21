@@ -180,6 +180,57 @@
   .resume-note p { margin: 0; font-size: 14.5px; color: var(--text-secondary); }
   .resume-note a { color: var(--accent); font-weight: 600; }
 
+  /* ---------- experience ---------- */
+  .role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .role-card {
+    padding: 24px 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+  }
+  .role-head { margin-bottom: 14px; }
+  .role-head h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .role-meta { font-size: 13.5px; color: var(--text-secondary); font-weight: 600; }
+  .role-dates { font-size: 12.5px; color: var(--text-tertiary); margin-top: 2px; }
+  .role-bullets {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .role-bullets li {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .role-bullets a { color: var(--accent); font-weight: 600; }
+  .role-sub-label {
+    margin: 14px 0 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* ---------- certificates ---------- */
+  .certs-grid { align-items: start; }
+  .certs-grid .skill-card h3 { font-size: 15px; }
+  .cert-issuer { font-size: 13.5px; font-weight: 600; color: var(--text-secondary); margin-top: 2px; }
+  .cert-meta { font-size: 12.5px; color: var(--text-tertiary); margin-top: 6px; }
+  .cert-id { font-size: 11.5px; color: var(--text-tertiary); margin-top: 6px; font-family: ui-monospace, "SF Mono", Menlo, monospace; word-break: break-all; }
+
   /* ---------- section label ---------- */
   .label {
     display: flex;
@@ -298,11 +349,29 @@
   .footer-links a:hover { color: var(--text); }
 
   @media (max-width: 680px) {
-    .hero { padding: 60px 0 44px; }
-    .hero h1 { font-size: 28px; }
-    .grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 0 18px; }
+    .hero { padding: 48px 0 36px; }
+    .hero img { width: 76px; height: 76px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 15.5px; }
+    .social { gap: 6px; }
+    .social a { font-size: 12.5px; padding: 6px 12px; }
+    .stats-strip { gap: 8px; margin-top: 22px; }
+    .stat-num { font-size: 14px; }
+    .stat-lbl { font-size: 11px; }
+    .tabs { margin: 28px 0 22px; gap: 8px; flex-wrap: wrap; }
+    .tab-btn { font-size: 13px; padding: 8px 16px; }
+    .grid { grid-template-columns: 1fr; gap: 12px; }
+    .skills-grid { grid-template-columns: 1fr; gap: 12px; }
+    .card, .skill-card, .role-card { padding: 18px 20px; }
+    .card-head img { width: 48px; height: 48px; }
     footer { justify-content: center; text-align: center; }
+  }
+
+  @media (max-width: 380px) {
+    .tab-btn { font-size: 12px; padding: 7px 12px; }
+    .stats-strip { flex-direction: column; gap: 4px; }
+    .stat-dot { display: none; }
   }
 </style>
 </head>
@@ -337,6 +406,7 @@
   <div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="apps" role="tab" aria-selected="true">Apps</button>
     <button class="tab-btn" data-tab="resume" role="tab" aria-selected="false">Resume</button>
+    <button class="tab-btn" data-tab="certs" role="tab" aria-selected="false">Certificates</button>
   </div>
 
   <div id="tab-apps" class="tab-panel active">
@@ -530,6 +600,97 @@
 
   <div id="tab-resume" class="tab-panel">
 
+    <p class="label">Experience</p>
+    <div class="role-list">
+
+      <article class="role-card">
+        <div class="role-head">
+          <h3>Software Engineer</h3>
+          <div class="role-meta">MOVE &middot; Full-time</div>
+          <div class="role-dates">Oct 2022 &ndash; Present &middot; 3 yrs 11 mos</div>
+        </div>
+        <ul class="role-bullets">
+          <li>Technology stack comprises Swift, SwiftUI, Combine and Kotlin Multiplatform (KMP), all integrated with the MVVM-C architecture.</li>
+          <li>Work closely with engineers, designers and product to develop new features in line with the product roadmap, with a continuous focus on improving functionality and resolving existing issues.</li>
+        </ul>
+      </article>
+
+      <article class="role-card">
+        <div class="role-head">
+          <h3>Software Engineer, iOS</h3>
+          <div class="role-meta">DaddyCoding</div>
+          <div class="role-dates">Oct 2016 &ndash; Present &middot; 9 yrs 11 mos</div>
+        </div>
+        <ul class="role-bullets">
+          <li>Use Swift to experiment with emerging technologies and integrate them into practical, shipped iOS applications.</li>
+          <li>Actively uphold best practices and stay current on new tooling to resolve issues and ship new features.</li>
+        </ul>
+        <p class="role-sub-label">Key achievements</p>
+        <ul class="role-bullets">
+          <li>Malaysia Law 101 reached a top-5 ranking in the Productivity category (May 2020).</li>
+          <li>LDS Priesthood holds a 4.9 rating from more than 120 ratings.</li>
+          <li>LDS Quotes maintains 55+ active paid subscribers across monthly and yearly plans.</li>
+          <li>QuickApp sees 3,000+ monthly usage sessions.</li>
+        </ul>
+      </article>
+
+      <article class="role-card">
+        <div class="role-head">
+          <h3>Software Engineer, iOS</h3>
+          <div class="role-meta">Quickget &middot; Full-time</div>
+          <div class="role-dates">Feb 2022 &ndash; Oct 2022 &middot; 9 mos</div>
+        </div>
+        <ul class="role-bullets">
+          <li>Technology stack comprised RxSwift, RxRealm, GraphQL, SwiftUI, Combine and Xcode Cloud, integrated with the MVVM architecture.</li>
+          <li>Worked closely with engineers, designers and product to ship new features against the roadmap.</li>
+        </ul>
+        <p class="role-sub-label">Key achievements</p>
+        <ul class="role-bullets">
+          <li>Migrated the codebase from RxSwift to Combine.</li>
+          <li>Transitioned architecture from VIPER to MVVM.</li>
+          <li>Applied SOLID principles and encapsulation as standard practice.</li>
+          <li>Led feature-release orchestration every sprint.</li>
+        </ul>
+      </article>
+
+      <article class="role-card">
+        <div class="role-head">
+          <h3>Software Engineer, iOS</h3>
+          <div class="role-meta">Astro</div>
+          <div class="role-dates">Mar 2020 &ndash; Feb 2022 &middot; 2 yrs</div>
+        </div>
+        <ul class="role-bullets">
+          <li>Technology stack built around RxSwift with the MVVM-C architectural pattern.</li>
+          <li>Worked closely with engineers, designers and product to consistently ship new functionality against the roadmap.</li>
+        </ul>
+        <p class="role-sub-label">Key achievements</p>
+        <ul class="role-bullets">
+          <li>Achieved 95%+ unit test coverage on My NJOI.</li>
+          <li>Cut Bitrise build time from 31 minutes to 11 minutes by moving to a local Swift package — <a href="https://daddycoding.com/2022/11/10/63-improvement-on-bitrise-build-time-for-ios" target="_blank" rel="noopener">written up here</a>.</li>
+          <li>Established best practices and guidelines for launching new projects from scratch.</li>
+          <li>Led an initiative that took My NJOI to a 4+ rating from 1,000+ reviews — the highest-rated app in the company's portfolio.</li>
+        </ul>
+      </article>
+
+      <article class="role-card">
+        <div class="role-head">
+          <h3>Software Engineer, iOS</h3>
+          <div class="role-meta">Kaodim</div>
+          <div class="role-dates">Sep 2018 &ndash; Mar 2020 &middot; 1 yr 7 mos</div>
+        </div>
+        <ul class="role-bullets">
+          <li>Technology stack centred on Swift with the MVVM architectural pattern.</li>
+          <li>Worked closely with engineers, designers and product to consistently ship new functionality against the roadmap.</li>
+        </ul>
+        <p class="role-sub-label">Key achievements</p>
+        <ul class="role-bullets">
+          <li>Migrated the codebase from MVC to MVVM.</li>
+          <li>Grew unit test coverage from 8% to 16%.</li>
+        </ul>
+      </article>
+
+    </div>
+
     <p class="label">How I build</p>
     <div class="skills-grid">
       <div class="skill-card">
@@ -558,9 +719,64 @@
       </div>
     </div>
 
-    <p class="label">Experience</p>
-    <div class="resume-note">
-      <p>Full role history lives on <a href="https://www.linkedin.com/in/kelvin-tan-31119133/" target="_blank" rel="noopener">LinkedIn</a> — this section is being filled in.</p>
+  </div>
+
+  <div id="tab-certs" class="tab-panel">
+
+    <p class="label">Certificates</p>
+    <div class="skills-grid certs-grid">
+
+      <div class="skill-card">
+        <h3>Generative AI Leader Certification</h3>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-meta">Issued Jul 2026 &middot; Expires Jul 2029</div>
+        <div class="cert-id">Credential ID e778196d-152f-4d51-81c9-469402c83614</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Generative AI &ndash; AI Transformation Lead Program</h3>
+        <div class="cert-issuer">Academy by AirAsia Next</div>
+        <div class="cert-meta">Issued May 2026</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Generative AI &ndash; English</h3>
+        <div class="cert-issuer">Academy by AirAsia Next</div>
+        <div class="cert-meta">Issued May 2026</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Google Cloud Certified Professional Cloud DevOps Engineer</h3>
+        <div class="cert-issuer">Google</div>
+        <div class="cert-meta">Issued Jan 2026 &middot; Expires Jan 2028</div>
+        <div class="cert-id">Credential ID c8886665ed56448caa760d05fc111262</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>CompTIA Security+ (SY0-601) Cert Prep: 2 Secure Code Design and Implementation</h3>
+        <div class="cert-issuer">LinkedIn</div>
+        <div class="cert-meta">Issued Oct 2021</div>
+        <div class="cert-id">Credential ID Aa9YZq17l_cZzhUhagdWZhktjY4F</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Launching Leaders</h3>
+        <div class="cert-issuer">BYU Management Society (Global)</div>
+        <div class="cert-meta">Issued Oct 2022</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>#KnowTheSign Anti-Trafficking Training</h3>
+        <div class="cert-issuer">AirAsia Foundation</div>
+        <div class="cert-meta">Issued Oct 2022</div>
+      </div>
+
+      <div class="skill-card">
+        <h3>PC Pro Certification</h3>
+        <div class="cert-issuer">TestOut Corporation</div>
+        <div class="cert-id">Credential ID C2VJT</div>
+      </div>
+
     </div>
 
   </div>
