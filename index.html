@@ -107,6 +107,79 @@
     border-color: var(--border-strong);
   }
 
+  /* ---------- stats strip ---------- */
+  .stats-strip {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .stat-item { display: flex; align-items: baseline; gap: 6px; }
+  .stat-num { font-size: 15px; font-weight: 800; color: var(--text); }
+  .stat-lbl { font-size: 12px; color: var(--text-tertiary); }
+  .stat-dot { color: var(--text-tertiary); }
+
+  /* ---------- tabs ---------- */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 40px 0 28px;
+  }
+  .tab-btn {
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 9px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .tab-btn:hover { color: var(--text); border-color: var(--border-strong); }
+  .tab-btn.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ---------- skills / resume ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+  .skill-card {
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+  }
+  .skill-card h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .skill-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .resume-note {
+    padding: 22px;
+    background: var(--surface);
+    border: 1px dashed var(--border-strong);
+    border-radius: 18px;
+    margin-bottom: 24px;
+  }
+  .resume-note p { margin: 0; font-size: 14.5px; color: var(--text-secondary); }
+  .resume-note a { color: var(--accent); font-weight: 600; }
+
   /* ---------- section label ---------- */
   .label {
     display: flex;
@@ -228,6 +301,7 @@
     .hero { padding: 60px 0 44px; }
     .hero h1 { font-size: 28px; }
     .grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
     footer { justify-content: center; text-align: center; }
   }
 </style>
@@ -250,7 +324,22 @@
       <a href="https://medium.com/@kelvintanzy" target="_blank" rel="noopener">Medium</a>
       <a href="https://github.com/zhiyao92" target="_blank" rel="noopener">GitHub</a>
     </nav>
+
+    <div class="stats-strip">
+      <div class="stat-item"><span class="stat-num">9</span><span class="stat-lbl">Apps shipped</span></div>
+      <div class="stat-dot">&middot;</div>
+      <div class="stat-item"><span class="stat-num">2019</span><span class="stat-lbl">Building since</span></div>
+      <div class="stat-dot">&middot;</div>
+      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lbl">Swift &amp; SwiftUI</span></div>
+    </div>
   </section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="apps" role="tab" aria-selected="true">Apps</button>
+    <button class="tab-btn" data-tab="resume" role="tab" aria-selected="false">Resume</button>
+  </div>
+
+  <div id="tab-apps" class="tab-panel active">
 
   <p class="label">Apps</p>
 
@@ -437,6 +526,45 @@
 
   </main>
 
+  </div>
+
+  <div id="tab-resume" class="tab-panel">
+
+    <p class="label">How I build</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Swift &amp; SwiftUI</h3>
+        <p>Every shipped app, no exceptions — MVVM throughout, one ViewModel per screen.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Firebase</h3>
+        <p>Firestore, Auth, Analytics, Crashlytics and App Check, shared across a multi-app portfolio on the same project where it makes sense.</p>
+      </div>
+      <div class="skill-card">
+        <h3>RevenueCat</h3>
+        <p>Subscription entitlements and paywalls across every app that monetises.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Protocol-first architecture</h3>
+        <p>Services sit behind a protocol so every layer can be faked in a test — a service that can't be faked is a defect, not a feature.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Tested by default</h3>
+        <p>New logic ships with unit tests in the same change, not after. Several apps carry 100+ tests gating CI.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Instrumentation discipline</h3>
+        <p>GA4 plus a purpose-built internal dashboard that maps screen and event coverage across the whole portfolio — a feature that isn't measured is a feature that can't be improved.</p>
+      </div>
+    </div>
+
+    <p class="label">Experience</p>
+    <div class="resume-note">
+      <p>Full role history lives on <a href="https://www.linkedin.com/in/kelvin-tan-31119133/" target="_blank" rel="noopener">LinkedIn</a> — this section is being filled in.</p>
+    </div>
+
+  </div>
+
   <footer>
     <div>&copy; 2026 Zhi Yao Tan</div>
     <nav class="footer-links">
@@ -448,6 +576,21 @@
   </footer>
 
 </div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tab-btn').forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
 
 </body>
 </html>
