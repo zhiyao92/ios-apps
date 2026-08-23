@@ -34,7 +34,7 @@ two URLs.
 | Malaysia Pocket | [Open](https://apps.apple.com/us/app/malaysia-pocket/id1504421248) | [malaysia-pocket-landing](https://zhiyao92.github.io/malaysia-pocket-landing/) |
 | LDS Quotes: Daily Inspiration | [Open](https://apps.apple.com/us/app/lds-quotes-daily-inspiration/id1506121689) | [lds-quotes-landing](https://zhiyao92.github.io/lds-quotes-landing/) |
 | Bondify: The Couples Edition | [Open](https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667) | — |
-| Whirl: Decision Roulette | [Open](https://apps.apple.com/us/app/whirl-decision-roulette/id6760835509) | — |
+| DishSpin: What to Eat Wheel | [Open](https://apps.apple.com/us/app/dishspin/id6760835509) | [dishspin-landing](https://zhiyao92.github.io/dishspin-landing/) |
 | InstantMessage: No-Save Chat | [Open](https://apps.apple.com/us/app/instantmessage-no-save-chat/id1540915370) | [quickapp-landing](https://zhiyao92.github.io/quickapp-landing/) |
 | LDS Priesthood: Ordinances | [Open](https://apps.apple.com/us/app/lds-priesthood-ordinances/id1502509285) | — |
 | LDS Conferences | [Open](https://apps.apple.com/us/app/lds-conferences/id1483787977) | — |
