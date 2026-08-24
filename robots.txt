@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zhiyao92.github.io/ios-apps/sitemap.xml

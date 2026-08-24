@@ -7,13 +7,53 @@
 <meta name="description" content="Independent iOS developer since 2016. 25 apps shipped, 9 in active focus, 120K+ downloads. Swift &amp; SwiftUI — see the apps, work experience and certifications." />
 <meta name="author" content="Zhi Yao Tan" />
 <link rel="icon" href="favicon.png" />
+<link rel="canonical" href="https://zhiyao92.github.io/ios-apps/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Kelvin Tan — iOS Developer, 25 Apps Shipped, 120K+ Downloads" />
 <meta property="og:description" content="Independent iOS developer since 2016. 25 apps shipped, 9 in active focus, 120K+ downloads. Swift &amp; SwiftUI — see the apps, work experience and certifications." />
 <meta property="og:url" content="https://zhiyao92.github.io/ios-apps/" />
-<meta property="og:image" content="https://zhiyao92.github.io/ios-apps/avatar.jpg" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="https://zhiyao92.github.io/ios-apps/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zhiyao92.github.io/ios-apps/og-image.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kelvin Tan",
+  "alternateName": "Zhi Yao Tan",
+  "url": "https://zhiyao92.github.io/ios-apps/",
+  "image": "https://zhiyao92.github.io/ios-apps/avatar.jpg",
+  "jobTitle": "iOS Developer",
+  "sameAs": [
+    "https://apps.apple.com/us/developer/zhi-yao-tan/id1161829106",
+    "https://www.linkedin.com/in/kelvin-tan-31119133/",
+    "https://x.com/KelvinTanZY/",
+    "https://www.threads.com/@kelvintan.zy",
+    "https://www.instagram.com/kelvintan.zy",
+    "https://medium.com/@kelvintanzy",
+    "https://github.com/zhiyao92"
+  ],
+  "owns": [
+    { "@type": "SoftwareApplication", "name": "Bondify: The Couples Edition", "applicationCategory": "LifestyleApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667" },
+    { "@type": "SoftwareApplication", "name": "DishSpin: What to Eat Wheel", "applicationCategory": "LifestyleApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/dishspin/id6760835509" },
+    { "@type": "SoftwareApplication", "name": "Beam: Learn Thai & Speak It", "applicationCategory": "EducationApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/beam-learn-thai-speak-it/id6480093061" },
+    { "@type": "SoftwareApplication", "name": "Provision", "applicationCategory": "FinanceApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/provision/id1538554089" },
+    { "@type": "SoftwareApplication", "name": "InstantMessage: No-Save Chat", "applicationCategory": "UtilitiesApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/instantmessage-no-save-chat/id1540915370" },
+    { "@type": "SoftwareApplication", "name": "LDS Quotes: Daily Inspiration", "applicationCategory": "LifestyleApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/lds-quotes-daily-inspiration/id1506121689" },
+    { "@type": "SoftwareApplication", "name": "Malaysia Pocket", "applicationCategory": "UtilitiesApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/malaysia-pocket/id1504421248" },
+    { "@type": "SoftwareApplication", "name": "LDS Priesthood: Ordinances", "applicationCategory": "ReferenceApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/lds-priesthood-ordinances/id1502509285" },
+    { "@type": "SoftwareApplication", "name": "LDS Conferences", "applicationCategory": "ReferenceApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/lds-conferences/id1483787977" }
+  ]
+}
+</script>
 
 <style>
   :root {
@@ -63,6 +103,14 @@
   }
   a { color: inherit; text-decoration: none; }
 
+  .hero h1, .label, .card h2, .role-head h3, .cert-card h3, .tab-btn, .stat-num {
+    font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
   .wrap {
     position: relative;
     max-width: 880px;
@@ -100,9 +148,24 @@
 
   /* ---------- hero ---------- */
   .hero {
+    position: relative;
     padding: 88px 0 56px;
     text-align: center;
   }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 680px;
+    height: 440px;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 24%, transparent), transparent 72%);
+    filter: blur(6px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
   .hero img {
     width: 88px;
     height: 88px;
@@ -112,19 +175,36 @@
     border: 1px solid var(--border);
     display: block;
     margin: 0 auto 22px;
+    box-shadow: 0 0 0 6px var(--bg);
+  }
+  .eyebrow {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
   }
   .hero h1 {
-    margin: 0 0 12px;
-    font-size: 34px;
-    line-height: 1.2;
+    margin: 0 0 14px;
+    font-size: 36px;
+    line-height: 1.15;
     font-weight: 800;
     letter-spacing: -0.02em;
   }
-  .hero p {
+  .hero-claim {
     margin: 0 auto;
-    max-width: 46ch;
-    color: var(--text-secondary);
-    font-size: 17px;
+    max-width: 40ch;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .hero-tagline {
+    margin: 10px auto 0;
+    max-width: 44ch;
+    color: var(--text-tertiary);
+    font-size: 14.5px;
   }
   .cta-badge {
     display: inline-flex;
@@ -333,6 +413,11 @@
     height: 1px;
     background: var(--border);
   }
+  .section-note {
+    margin: -14px 0 24px;
+    font-size: 13.5px;
+    color: var(--text-tertiary);
+  }
 
   /* ---------- app grid ---------- */
   /* ---------- apps timeline ---------- */
@@ -384,12 +469,15 @@
     padding: 22px;
     background: var(--surface);
     border: 1px solid var(--border);
+    border-top: 2px solid var(--app-accent, var(--border));
     border-radius: 18px;
-    transition: border-color .15s ease, transform .15s ease;
+    transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
   }
   .card:hover {
     border-color: var(--border-strong);
+    border-top-color: var(--app-accent, var(--border-strong));
     transform: translateY(-2px);
+    box-shadow: 0 12px 28px -18px var(--app-accent, transparent);
   }
   .card-head {
     display: flex;
@@ -429,6 +517,21 @@
     line-height: 1.55;
     color: var(--text-secondary);
     flex: 1;
+  }
+  .card-shot {
+    margin: 2px 0 18px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .card-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+    object-fit: cover;
+    object-position: top center;
   }
   .actions {
     display: flex;
@@ -527,8 +630,12 @@
 
   <section class="hero">
     <img src="avatar.jpg" alt="Kelvin Tan" />
+    <p class="eyebrow">Independent iOS Developer</p>
     <h1>Kelvin Tan</h1>
-    <p>
+    <p class="hero-claim">
+      25 apps shipped since 2016. 9 live today — designed, built, shipped and marketed solo.
+    </p>
+    <p class="hero-tagline">
       Professional problem-solver. Unofficial overthinker. I turn daily
       annoyances into apps so you don’t have to deal with them. 📱
     </p>
@@ -586,6 +693,7 @@
   <div id="tab-apps" class="tab-panel active">
 
   <p class="label">Apps &middot; 9 in focus</p>
+  <p class="section-note">25 shipped since 2016 — cut down to the 9 below so each one gets real attention.</p>
 
   <main class="timeline">
 
@@ -593,7 +701,7 @@
       <div class="timeline-year">2026</div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="bondify" style="--app-accent: #E8874A">
       <div class="card-head">
         <img src="icons/bondify.png" alt="" />
         <div>
@@ -615,7 +723,7 @@
       <div class="timeline-year"></div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="dishspin" style="--app-accent: #A83C1E">
       <div class="card-head">
         <img src="icons/dishspin.png" alt="" />
         <div>
@@ -638,7 +746,7 @@
       <div class="timeline-year">2024</div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="beam" style="--app-accent: #2F7A63">
       <div class="card-head">
         <img src="icons/beam.png" alt="" />
         <div>
@@ -650,6 +758,7 @@
       <p>
         You've studied Thai for months and the taxi driver still doesn't understand you — Beam fixes the part every course skips.
       </p>
+      <div class="card-shot"><img src="shots/beam.webp" alt="Screenshot of the Beam app" loading="lazy" width="420" /></div>
       <div class="actions">
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/beam-learn-thai-speak-it/id6480093061" target="_blank" rel="noopener">App Store</a>
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/beam-landing/" target="_blank" rel="noopener">Learn more</a>
@@ -662,7 +771,7 @@
       <div class="timeline-year">2022</div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="provision" style="--app-accent: #0F3D30">
       <div class="card-head">
         <img src="icons/provision.png" alt="" />
         <div>
@@ -673,6 +782,7 @@
       <p>
         You're about to sign a 30-year loan and have no idea what it actually costs — Provision shows you before you do.
       </p>
+      <div class="card-shot"><img src="shots/provision.webp" alt="Screenshot of the Provision app" loading="lazy" width="420" /></div>
       <div class="actions">
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/provision/id1538554089" target="_blank" rel="noopener">App Store</a>
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/provision-landing/" target="_blank" rel="noopener">Learn more</a>
@@ -685,7 +795,7 @@
       <div class="timeline-year">2020</div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="instantmessage" style="--app-accent: #8454DA">
       <div class="card-head">
         <img src="icons/instantmessage.png" alt="" />
         <div>
@@ -708,7 +818,7 @@
       <div class="timeline-year"></div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="lds-quotes" style="--app-accent: #8A9A5B">
       <div class="card-head">
         <img src="icons/lds-quotes.png" alt="" />
         <div>
@@ -720,6 +830,7 @@
       <p>
         Some mornings you need someone else's words before you can find your own — LDS Quotes has one waiting.
       </p>
+      <div class="card-shot"><img src="shots/lds-quotes.webp" alt="Screenshot of the LDS Quotes app" loading="lazy" width="420" /></div>
       <div class="actions">
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/lds-quotes-daily-inspiration/id1506121689" target="_blank" rel="noopener">App Store</a>
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-quotes-landing/" target="_blank" rel="noopener">Learn more</a>
@@ -732,7 +843,7 @@
       <div class="timeline-year"></div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="malaysia-pocket" style="--app-accent: #3E4DA5">
       <div class="card-head">
         <img src="icons/malaysia-pocket.png" alt="" />
         <div>
@@ -744,6 +855,7 @@
       <p>
         Something's gone wrong and googling your rights is the last thing you have time for — Malaysia Pocket already has the answer.
       </p>
+      <div class="card-shot"><img src="shots/malaysia-pocket.webp" alt="Screenshot of the Malaysia Pocket app" loading="lazy" width="420" /></div>
       <div class="actions">
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/malaysia-pocket/id1504421248" target="_blank" rel="noopener">App Store</a>
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/malaysia-pocket-landing/" target="_blank" rel="noopener">Learn more</a>
@@ -756,7 +868,7 @@
       <div class="timeline-year"></div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="lds-priesthood" style="--app-accent: #C9A227">
       <div class="card-head">
         <img src="icons/lds-priesthood.png" alt="" />
         <div>
@@ -768,6 +880,7 @@
       <p>
         You've just been asked to give a blessing and can't remember the exact words — LDS Priesthood has them, right there.
       </p>
+      <div class="card-shot"><img src="shots/lds-priesthood.webp" alt="Screenshot of the LDS Priesthood app" loading="lazy" width="420" /></div>
       <div class="actions">
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/lds-priesthood-ordinances/id1502509285" target="_blank" rel="noopener">App Store</a>
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-priesthood-landing/" target="_blank" rel="noopener">Learn more</a>
@@ -780,7 +893,7 @@
       <div class="timeline-year">2019</div>
       <div class="timeline-marker"><span class="timeline-dot"></span></div>
       <div class="timeline-content">
-    <article class="card">
+    <article class="card" id="lds-conferences" style="--app-accent: #9C6F2B">
       <div class="card-head">
         <img src="icons/lds-conferences.png" alt="" />
         <div>
@@ -792,6 +905,7 @@
       <p>
         General Conference started and you're nowhere near a TV — LDS Conferences puts it in your pocket, live.
       </p>
+      <div class="card-shot"><img src="shots/lds-conferences.webp" alt="Screenshot of the LDS Conferences app" loading="lazy" width="420" /></div>
       <div class="actions">
         <a class="btn btn-primary" href="https://apps.apple.com/us/app/lds-conferences/id1483787977" target="_blank" rel="noopener">App Store</a>
         <a class="btn btn-ghost" href="https://zhiyao92.github.io/lds-conferences-landing/" target="_blank" rel="noopener">Learn more</a>
@@ -946,7 +1060,7 @@
           <p class="role-sub-label">Key achievements</p>
           <ul class="role-bullets">
             <li>Malaysia Law 101 &mdash; top 5 in Productivity (2020).</li>
-            <li>LDS Priesthood &mdash; 4.9 stars from 120+ ratings.</li>
+            <li>LDS Priesthood &mdash; 4.8 stars from 450+ ratings.</li>
             <li>LDS Quotes &mdash; 55+ active paid subscribers.</li>
             <li>QuickApp &mdash; 3,000+ sessions a month.</li>
           </ul>
@@ -1164,8 +1278,27 @@
     return true;
   }
 
-  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  tabBtns.forEach(function (btn) {
     btn.addEventListener('click', function () { activateTab(btn.dataset.tab, true); });
+  });
+
+  // Arrow keys move focus and selection between tabs, Home/End jump to the ends —
+  // standard behaviour for role="tablist", which the markup already claims via ARIA.
+  document.querySelector('.tabs').addEventListener('keydown', function (e) {
+    var list = Array.prototype.slice.call(tabBtns);
+    var i = list.indexOf(document.activeElement);
+    if (i === -1) return;
+    var next = null;
+    if (e.key === 'ArrowRight') next = list[(i + 1) % list.length];
+    else if (e.key === 'ArrowLeft') next = list[(i - 1 + list.length) % list.length];
+    else if (e.key === 'Home') next = list[0];
+    else if (e.key === 'End') next = list[list.length - 1];
+    if (next) {
+      e.preventDefault();
+      next.focus();
+      activateTab(next.dataset.tab, true);
+    }
   });
 
   // Deep link: /#experience or /#certificates opens straight to that tab.
