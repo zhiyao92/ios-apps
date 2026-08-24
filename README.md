@@ -61,8 +61,7 @@ terms-and-condition.html  # portfolio-wide, shared by every app
 contact-us.html           # contact form
 icons/                    # 256px app icons, used by the Apps timeline
 icons/logos/              # employer and certificate-issuer logos
-shots/                    # cropped .webp screenshots shown on 6 of the 9 app cards
-Screenshots/              # source App Store marketing collages shots/ is cropped from
+Screenshots/              # App Store marketing screenshots, not used by the site itself
 avatar.jpg                # profile photo in the hero, also the JSON-LD image
 og-image.png              # 1200x630 social preview card, composed from the same data
 favicon.png               # tab icon
@@ -99,14 +98,12 @@ to `-apple-system` and the page still reads fine.
 ### Adding an app
 
 1. Export a 256px icon to `icons/`.
-2. Optional: crop a single phone out of an App Store marketing screenshot into
-   `shots/<slug>.webp` (see the six existing ones for the target size and crop).
-3. Copy a whole `<div class="timeline-row">` block in the Apps timeline and edit
+2. Copy a whole `<div class="timeline-row">` block in the Apps timeline and edit
    the icon, name, tag, rating, one-line description, `id`, `--app-accent` and
-   links. Insert a `<div class="card-shot">` with the screenshot if you made one.
-4. Put the release year in `<div class="timeline-year">`, or leave it empty when
+   links.
+3. Put the release year in `<div class="timeline-year">`, or leave it empty when
    the app above it already shows that year.
-5. Add a row to the table above, and to the `owns` list in the JSON-LD block in
+4. Add a row to the table above, and to the `owns` list in the JSON-LD block in
    `<head>`.
 
 Rows are ordered newest-first. The description is **one sentence** that names the
