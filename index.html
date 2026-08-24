@@ -28,7 +28,7 @@
     --border-strong: rgba(0, 0, 0, 0.14);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #0d0d12;
       --surface: #15161d;
       --text: #f3f4f8;
@@ -38,6 +38,17 @@
       --border-strong: rgba(255, 255, 255, 0.16);
     }
   }
+  :root[data-theme="dark"] {
+    --bg: #0d0d12;
+    --surface: #15161d;
+    --text: #f3f4f8;
+    --text-secondary: #9aa0b3;
+    --text-tertiary: #6f7488;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.16);
+  }
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -53,9 +64,38 @@
   a { color: inherit; text-decoration: none; }
 
   .wrap {
+    position: relative;
     max-width: 880px;
     margin: 0 auto;
     padding: 0 24px;
+  }
+
+  /* ---------- theme toggle ---------- */
+  .theme-toggle {
+    position: absolute;
+    top: 22px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-toggle svg { width: 17px; height: 17px; }
+  .theme-toggle .icon-moon { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+  :root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
+    :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
   }
 
   /* ---------- hero ---------- */
@@ -239,6 +279,21 @@
     color: var(--text-secondary);
   }
   .role-bullets a { color: var(--accent); font-weight: 600; }
+  .role-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 12px;
+  }
+  .role-stack span {
+    padding: 3px 9px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
   .role-sub-label {
     margin: 14px 0 8px;
     font-size: 11.5px;
@@ -249,16 +304,13 @@
   }
 
   /* ---------- certificates ---------- */
-  .certs-grid .skill-card { display: flex; flex-direction: column; height: 100%; }
-  .certs-grid .cert-meta,
-  .certs-grid .cert-id { margin-top: auto; padding-top: 6px; }
   .cert-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
   .cert-logo {
     width: 40px; height: 40px; border-radius: 11px;
     flex-shrink: 0;
     border: 1px solid var(--border);
   }
-  .certs-grid .skill-card h3 { font-size: 15px; }
+  .cert-card h3 { font-size: 15px; }
   .cert-issuer { font-size: 13.5px; font-weight: 600; color: var(--text-secondary); margin-top: 2px; }
   .cert-meta { font-size: 12.5px; color: var(--text-tertiary); margin-top: 6px; }
   .cert-id { font-size: 11.5px; color: var(--text-tertiary); margin-top: 6px; font-family: ui-monospace, "SF Mono", Menlo, monospace; word-break: break-all; }
@@ -452,10 +504,26 @@
     .stat-dot { display: none; }
   }
 </style>
+<script>
+  // Applied before first paint so a stored choice never flashes the other theme.
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
 <div class="wrap">
+
+  <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.2v2.4M12 19.4v2.4M2.2 12h2.4M19.4 12h2.4M5.1 5.1l1.7 1.7M17.2 17.2l1.7 1.7M18.9 5.1l-1.7 1.7M6.8 17.2l-1.7 1.7"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 13.2A9 9 0 1 1 10.8 3a7.2 7.2 0 0 0 10.2 10.2z"/></svg>
+  </button>
 
   <section class="hero">
     <img src="avatar.jpg" alt="Kelvin Tan" />
@@ -738,111 +806,155 @@
 
   <div id="tab-experience" class="tab-panel">
 
-    <p class="label">Experience</p>
-    <div class="role-list">
+    <p class="label">Experience &middot; since 2016</p>
 
-      <article class="role-card">
-        <div class="role-head">
-          <img class="role-logo" src="icons/logos/move.png" alt="" />
-          <div>
-          <h3>Software Engineer</h3>
-          <div class="role-meta">MOVE &middot; Full-time</div>
-          <div class="role-dates">Oct 2022 &ndash; Present &middot; 3 yrs 11 mos</div>
+    <main class="timeline">
+
+    <div class="timeline-row">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <article class="role-card">
+          <div class="role-head">
+            <img class="role-logo" src="icons/logos/move.png" alt="" />
+            <div>
+              <h3>Software Engineer</h3>
+              <div class="role-meta">MOVE &middot; Full-time</div>
+              <div class="role-dates">Oct 2022 &ndash; Present &middot; 3 yrs 11 mos</div>
+            </div>
           </div>
-        </div>
-        <ul class="role-bullets">
-          <li>Technology stack comprises Swift, SwiftUI, Combine and Kotlin Multiplatform (KMP), all integrated with the MVVM-C architecture.</li>
-          <li>Work closely with engineers, designers and product to develop new features in line with the product roadmap, with a continuous focus on improving functionality and resolving existing issues.</li>
-        </ul>
-      </article>
-
-      <article class="role-card">
-        <div class="role-head">
-          <img class="role-logo" src="icons/logos/daddycoding.png" alt="" />
-          <div>
-          <h3>Software Engineer, iOS</h3>
-          <div class="role-meta">DaddyCoding</div>
-          <div class="role-dates">Oct 2016 &ndash; Present &middot; 9 yrs 11 mos</div>
+          <div class="role-stack">
+            <span>Swift</span>
+            <span>SwiftUI</span>
+            <span>Combine</span>
+            <span>Kotlin Multiplatform</span>
+            <span>MVVM-C</span>
           </div>
-        </div>
-        <ul class="role-bullets">
-          <li>Use Swift to experiment with emerging technologies and integrate them into practical, shipped iOS applications.</li>
-          <li>Actively uphold best practices and stay current on new tooling to resolve issues and ship new features.</li>
-        </ul>
-        <p class="role-sub-label">Key achievements</p>
-        <ul class="role-bullets">
-          <li>Malaysia Law 101 reached a top-5 ranking in the Productivity category (May 2020).</li>
-          <li>LDS Priesthood holds a 4.9 rating from more than 120 ratings.</li>
-          <li>LDS Quotes maintains 55+ active paid subscribers across monthly and yearly plans.</li>
-          <li>QuickApp sees 3,000+ monthly usage sessions.</li>
-        </ul>
-      </article>
-
-      <article class="role-card">
-        <div class="role-head">
-          <img class="role-logo" src="icons/logos/quickget.png" alt="" />
-          <div>
-          <h3>Software Engineer, iOS</h3>
-          <div class="role-meta">Quickget &middot; Full-time</div>
-          <div class="role-dates">Feb 2022 &ndash; Oct 2022 &middot; 9 mos</div>
-          </div>
-        </div>
-        <ul class="role-bullets">
-          <li>Technology stack comprised RxSwift, RxRealm, GraphQL, SwiftUI, Combine and Xcode Cloud, integrated with the MVVM architecture.</li>
-          <li>Worked closely with engineers, designers and product to ship new features against the roadmap.</li>
-        </ul>
-        <p class="role-sub-label">Key achievements</p>
-        <ul class="role-bullets">
-          <li>Migrated the codebase from RxSwift to Combine.</li>
-          <li>Transitioned architecture from VIPER to MVVM.</li>
-          <li>Applied SOLID principles and encapsulation as standard practice.</li>
-          <li>Led feature-release orchestration every sprint.</li>
-        </ul>
-      </article>
-
-      <article class="role-card">
-        <div class="role-head">
-          <img class="role-logo" src="icons/logos/astro.png" alt="" />
-          <div>
-          <h3>Software Engineer, iOS</h3>
-          <div class="role-meta">Astro</div>
-          <div class="role-dates">Mar 2020 &ndash; Feb 2022 &middot; 2 yrs</div>
-          </div>
-        </div>
-        <ul class="role-bullets">
-          <li>Technology stack built around RxSwift with the MVVM-C architectural pattern.</li>
-          <li>Worked closely with engineers, designers and product to consistently ship new functionality against the roadmap.</li>
-        </ul>
-        <p class="role-sub-label">Key achievements</p>
-        <ul class="role-bullets">
-          <li>Achieved 95%+ unit test coverage on My NJOI.</li>
-          <li>Cut Bitrise build time from 31 minutes to 11 minutes by moving to a local Swift package — <a href="https://daddycoding.com/2022/11/10/63-improvement-on-bitrise-build-time-for-ios" target="_blank" rel="noopener">written up here</a>.</li>
-          <li>Established best practices and guidelines for launching new projects from scratch.</li>
-          <li>Led an initiative that took My NJOI to a 4+ rating from 1,000+ reviews — the highest-rated app in the company's portfolio.</li>
-        </ul>
-      </article>
-
-      <article class="role-card">
-        <div class="role-head">
-          <img class="role-logo" src="icons/logos/kaodim.png" alt="" />
-          <div>
-          <h3>Software Engineer, iOS</h3>
-          <div class="role-meta">Kaodim</div>
-          <div class="role-dates">Sep 2018 &ndash; Mar 2020 &middot; 1 yr 7 mos</div>
-          </div>
-        </div>
-        <ul class="role-bullets">
-          <li>Technology stack centred on Swift with the MVVM architectural pattern.</li>
-          <li>Worked closely with engineers, designers and product to consistently ship new functionality against the roadmap.</li>
-        </ul>
-        <p class="role-sub-label">Key achievements</p>
-        <ul class="role-bullets">
-          <li>Migrated the codebase from MVC to MVVM.</li>
-          <li>Grew unit test coverage from 8% to 16%.</li>
-        </ul>
-      </article>
-
+          <ul class="role-bullets">
+            <li>Ship roadmap features with product and design across a shared Kotlin Multiplatform codebase.</li>
+          </ul>
+        </article>
+      </div>
     </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <article class="role-card">
+          <div class="role-head">
+            <img class="role-logo" src="icons/logos/quickget.png" alt="" />
+            <div>
+              <h3>Software Engineer, iOS</h3>
+              <div class="role-meta">Quickget &middot; Full-time</div>
+              <div class="role-dates">Feb 2022 &ndash; Oct 2022 &middot; 9 mos</div>
+            </div>
+          </div>
+          <div class="role-stack">
+            <span>RxSwift</span>
+            <span>Combine</span>
+            <span>GraphQL</span>
+            <span>SwiftUI</span>
+            <span>Xcode Cloud</span>
+          </div>
+          <p class="role-sub-label">Key achievements</p>
+          <ul class="role-bullets">
+            <li>Migrated the codebase from RxSwift to Combine.</li>
+            <li>Moved the architecture from VIPER to MVVM.</li>
+            <li>Ran the release train every sprint.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <article class="role-card">
+          <div class="role-head">
+            <img class="role-logo" src="icons/logos/astro.png" alt="" />
+            <div>
+              <h3>Software Engineer, iOS</h3>
+              <div class="role-meta">Astro</div>
+              <div class="role-dates">Mar 2020 &ndash; Feb 2022 &middot; 2 yrs</div>
+            </div>
+          </div>
+          <div class="role-stack">
+            <span>RxSwift</span>
+            <span>MVVM-C</span>
+          </div>
+          <p class="role-sub-label">Key achievements</p>
+          <ul class="role-bullets">
+            <li>Took My NJOI to 4+ stars across 1,000+ reviews &mdash; the highest-rated app in the portfolio.</li>
+            <li>Held 95%+ unit test coverage on My NJOI.</li>
+            <li>Cut Bitrise build time 31 min &rarr; 11 min with a local Swift package &mdash; <a href="https://daddycoding.com/2022/11/10/63-improvement-on-bitrise-build-time-for-ios" target="_blank" rel="noopener">write-up</a>.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">2018</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <article class="role-card">
+          <div class="role-head">
+            <img class="role-logo" src="icons/logos/kaodim.png" alt="" />
+            <div>
+              <h3>Software Engineer, iOS</h3>
+              <div class="role-meta">Kaodim</div>
+              <div class="role-dates">Sep 2018 &ndash; Mar 2020 &middot; 1 yr 7 mos</div>
+            </div>
+          </div>
+          <div class="role-stack">
+            <span>Swift</span>
+            <span>MVVM</span>
+          </div>
+          <p class="role-sub-label">Key achievements</p>
+          <ul class="role-bullets">
+            <li>Migrated the codebase from MVC to MVVM.</li>
+            <li>Doubled unit test coverage, 8% &rarr; 16%.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">2016</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <article class="role-card">
+          <div class="role-head">
+            <img class="role-logo" src="icons/logos/daddycoding.png" alt="" />
+            <div>
+              <h3>Software Engineer, iOS</h3>
+              <div class="role-meta">DaddyCoding &middot; Indie</div>
+              <div class="role-dates">Oct 2016 &ndash; Present &middot; 9 yrs 11 mos</div>
+            </div>
+          </div>
+          <div class="role-stack">
+            <span>Swift</span>
+            <span>SwiftUI</span>
+            <span>Firebase</span>
+            <span>RevenueCat</span>
+            <span>StoreKit</span>
+          </div>
+          <ul class="role-bullets">
+            <li>25 apps shipped solo &mdash; design, build, release and marketing.</li>
+          </ul>
+          <p class="role-sub-label">Key achievements</p>
+          <ul class="role-bullets">
+            <li>Malaysia Law 101 &mdash; top 5 in Productivity (2020).</li>
+            <li>LDS Priesthood &mdash; 4.9 stars from 120+ ratings.</li>
+            <li>LDS Quotes &mdash; 55+ active paid subscribers.</li>
+            <li>QuickApp &mdash; 3,000+ sessions a month.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    </main>
 
     <p class="label">How I build</p>
     <div class="skills-grid">
@@ -876,101 +988,150 @@
 
   <div id="tab-certificates" class="tab-panel">
 
-    <p class="label">Certificates</p>
-    <div class="skills-grid certs-grid">
+    <p class="label">Certificates &middot; 8 earned</p>
 
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/google.png" alt="" />
-          <div>
-            <h3>Generative AI Leader Certification</h3>
-            <div class="cert-issuer">Google</div>
+    <main class="timeline">
+
+    <div class="timeline-row">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/google.png" alt="" />
+            <div>
+              <h3>Generative AI Leader Certification</h3>
+              <div class="cert-issuer">Google</div>
+            </div>
           </div>
+          <div class="cert-meta">Issued Jul 2026 &middot; Expires Jul 2029</div>
+          <div class="cert-id">Credential ID e778196d-152f-4d51-81c9-469402c83614</div>
         </div>
-        <div class="cert-meta">Issued Jul 2026 &middot; Expires Jul 2029</div>
-        <div class="cert-id">Credential ID e778196d-152f-4d51-81c9-469402c83614</div>
       </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/airasia-next.png" alt="" />
-          <div>
-            <h3>Generative AI &ndash; AI Transformation Lead Program</h3>
-            <div class="cert-issuer">Academy by AirAsia Next</div>
-          </div>
-        </div>
-        <div class="cert-meta">Issued May 2026</div>
-      </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/airasia-next.png" alt="" />
-          <div>
-            <h3>Generative AI &ndash; English</h3>
-            <div class="cert-issuer">Academy by AirAsia Next</div>
-          </div>
-        </div>
-        <div class="cert-meta">Issued May 2026</div>
-      </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/google.png" alt="" />
-          <div>
-            <h3>Google Cloud Certified Professional Cloud DevOps Engineer</h3>
-            <div class="cert-issuer">Google</div>
-          </div>
-        </div>
-        <div class="cert-meta">Issued Jan 2026 &middot; Expires Jan 2028</div>
-        <div class="cert-id">Credential ID c8886665ed56448caa760d05fc111262</div>
-      </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/linkedin.png" alt="" />
-          <div>
-            <h3>CompTIA Security+ (SY0-601) Cert Prep: 2 Secure Code Design and Implementation</h3>
-            <div class="cert-issuer">LinkedIn</div>
-          </div>
-        </div>
-        <div class="cert-meta">Issued Oct 2021</div>
-        <div class="cert-id">Credential ID Aa9YZq17l_cZzhUhagdWZhktjY4F</div>
-      </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/byu.png" alt="" />
-          <div>
-            <h3>Launching Leaders</h3>
-            <div class="cert-issuer">BYU Management Society (Global)</div>
-          </div>
-        </div>
-        <div class="cert-meta">Issued Oct 2022</div>
-      </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/airasia-foundation.png" alt="" />
-          <div>
-            <h3>#KnowTheSign Anti-Trafficking Training</h3>
-            <div class="cert-issuer">AirAsia Foundation</div>
-          </div>
-        </div>
-        <div class="cert-meta">Issued Oct 2022</div>
-      </div>
-
-      <div class="skill-card cert-card">
-        <div class="cert-head">
-          <img class="cert-logo" src="icons/logos/testout.png" alt="" />
-          <div>
-            <h3>PC Pro Certification</h3>
-            <div class="cert-issuer">TestOut Corporation</div>
-          </div>
-        </div>
-        <div class="cert-id">Credential ID C2VJT</div>
-      </div>
-
     </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/airasia-next.png" alt="" />
+            <div>
+              <h3>Generative AI &ndash; AI Transformation Lead Program</h3>
+              <div class="cert-issuer">Academy by AirAsia Next</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued May 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/airasia-next.png" alt="" />
+            <div>
+              <h3>Generative AI &ndash; English</h3>
+              <div class="cert-issuer">Academy by AirAsia Next</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued May 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/google.png" alt="" />
+            <div>
+              <h3>Google Cloud Certified Professional Cloud DevOps Engineer</h3>
+              <div class="cert-issuer">Google</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued Jan 2026 &middot; Expires Jan 2028</div>
+          <div class="cert-id">Credential ID c8886665ed56448caa760d05fc111262</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/byu.png" alt="" />
+            <div>
+              <h3>Launching Leaders</h3>
+              <div class="cert-issuer">BYU Management Society (Global)</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued Oct 2022</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/airasia-foundation.png" alt="" />
+            <div>
+              <h3>#KnowTheSign Anti-Trafficking Training</h3>
+              <div class="cert-issuer">AirAsia Foundation</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued Oct 2022</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year">2021</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/linkedin.png" alt="" />
+            <div>
+              <h3>CompTIA Security+ (SY0-601) Cert Prep: 2 Secure Code Design and Implementation</h3>
+              <div class="cert-issuer">LinkedIn</div>
+            </div>
+          </div>
+          <div class="cert-meta">Issued Oct 2021</div>
+          <div class="cert-id">Credential ID Aa9YZq17l_cZzhUhagdWZhktjY4F</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year"></div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+        <div class="skill-card cert-card">
+          <div class="cert-head">
+            <img class="cert-logo" src="icons/logos/testout.png" alt="" />
+            <div>
+              <h3>PC Pro Certification</h3>
+              <div class="cert-issuer">TestOut Corporation</div>
+            </div>
+          </div>
+          <div class="cert-id">Credential ID C2VJT</div>
+        </div>
+      </div>
+    </div>
+
+    </main>
 
   </div>
 
@@ -1012,6 +1173,16 @@
   if (initial) activateTab(initial, false);
   window.addEventListener('hashchange', function () {
     activateTab(window.location.hash.replace('#', ''), false);
+  });
+
+  // Theme toggle: follows the system until the visitor picks a side, then remembers it.
+  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  document.querySelector('.theme-toggle').addEventListener('click', function () {
+    var current = document.documentElement.getAttribute('data-theme')
+      || (systemDark.matches ? 'dark' : 'light');
+    var next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
   });
 </script>
 
