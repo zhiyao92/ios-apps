@@ -1,6 +1,6 @@
 <h2 align="center">Kelvin Tan — iOS Apps</h2>
 <p align="center">
-  Independent iOS developer since 2016. 25 apps shipped, 9 still live.<br>
+  Software engineer since 2016. 25 apps shipped, 9 still live.<br>
   <strong><a href="https://zhiyao92.github.io/ios-apps/">zhiyao92.github.io/ios-apps</a></strong>
 </p>
 <p align="center">
