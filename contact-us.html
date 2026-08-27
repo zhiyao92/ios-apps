@@ -1,82 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .form-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-        }
-        h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-            text-align: center;
-        }
-        label {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #555;
-        }
-        input[type="email"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        textarea {
-            resize: vertical;
-            height: 100px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Contact — Kelvin Tan</title>
+<meta name="description" content="Questions, bug reports, or feedback about any of the apps — send a message and get a reply by email." />
+<link rel="icon" href="favicon.png" />
+<link rel="canonical" href="https://zhiyao92.github.io/ios-apps/contact-us.html" />
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --surface: #f6f6f8;
+    --text: #14151a;
+    --text-secondary: #5b6072;
+    --accent: #A36CFF;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-strong: rgba(0, 0, 0, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d0d12;
+      --surface: #1a1b22;
+      --text: #f3f4f8;
+      --text-secondary: #9aa0b3;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+  main {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+    padding-bottom: max(64px, env(safe-area-inset-bottom));
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 0;
+  }
+  .back:hover { color: var(--text); }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin: 12px 0 28px;
+  }
+  header .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  h1 {
+    margin: 6px 0 6px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 20px;
+  }
+  .field { margin-bottom: 18px; }
+  .field:last-of-type { margin-bottom: 22px; }
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  input[type="email"], textarea {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text);
+    /* 16px keeps iOS Safari from zooming the page on focus. */
+    font-size: 16px;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input[type="email"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(163, 108, 255, 0.18);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+  .gotcha { position: absolute; left: -9999px; }
+
+  button {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 18px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-appearance: none;
+    transition: filter 0.15s ease;
+  }
+  button:hover { filter: brightness(1.08); }
+  button:active { filter: brightness(0.94); }
+  button[disabled] { opacity: 0.6; cursor: default; }
+
+  .status {
+    margin-top: 16px;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 14px;
+    display: none;
+  }
+  .status.is-visible { display: block; }
+  .status.ok {
+    background: rgba(163, 108, 255, 0.12);
+    border: 1px solid var(--accent);
+    color: var(--text);
+  }
+  .status.err {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+  }
+
+  .alt {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-secondary); }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 480px) {
+    main { padding-top: 24px; }
+    h1 { font-size: 24px; }
+    header p { font-size: 14.5px; }
+    .card { padding: 18px 16px; border-radius: 14px; }
+    textarea { min-height: 130px; }
+    footer { justify-content: center; text-align: center; }
+  }
+</style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Contact Us</h1>
-        <form action="https://formspree.io/f/xvgprgld" method="POST">
-            <label>
-                Your email:
-                <input type="email" name="email" required>
-            </label>
-            <label>
-                Your message:
-                <textarea name="message" required></textarea>
-            </label>
-            <!-- your other form fields go here -->
-            <button type="submit">Send</button>
-        </form>
+<main>
+  <a class="back" href="index.html" aria-label="Back to all apps">&larr; All apps</a>
+
+  <header>
+    <div class="eyebrow">Support</div>
+    <h1>Contact</h1>
+    <p>A question, a bug, or an idea for any of the apps &mdash; it all reaches the same inbox. Replies usually go out within a couple of days.</p>
+  </header>
+
+  <div class="card">
+    <form id="contact-form" action="https://formspree.io/f/xvgprgld" method="POST">
+      <div class="field">
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="email" placeholder="you@example.com" required>
+        <span class="hint">Only used to reply to you.</span>
+      </div>
+
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" placeholder="Which app is it about, and what happened?" required></textarea>
+      </div>
+
+      <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" id="submit-btn">Send message</button>
+    </form>
+
+    <div class="status ok" id="status-ok" role="status">
+      <strong>Message sent.</strong> Thanks &mdash; a reply will come to the email you gave.
     </div>
+    <div class="status err" id="status-err" role="alert">
+      That didn&rsquo;t go through. Please email
+      <a href="mailto:kelvin.vins@gmail.com">kelvin.vins@gmail.com</a> directly.
+    </div>
+  </div>
+
+  <p class="alt">Prefer email? <a href="mailto:kelvin.vins@gmail.com">kelvin.vins@gmail.com</a></p>
+
+  <footer>
+    <div>&copy; 2026 Zhi Yao Tan</div>
+    <nav class="footer-links">
+      <a href="index.html">Apps</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-and-condition.html">Terms</a>
+    </nav>
+  </footer>
+</main>
+
+<script>
+  // Submits over fetch so the reply stays on this page. Without JS the form
+  // still posts normally to Formspree and lands on their confirmation page.
+  (function () {
+    var form = document.getElementById('contact-form');
+    var btn = document.getElementById('submit-btn');
+    var ok = document.getElementById('status-ok');
+    var err = document.getElementById('status-err');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      ok.classList.remove('is-visible');
+      err.classList.remove('is-visible');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('bad status');
+        form.style.display = 'none';
+        ok.classList.add('is-visible');
+      }).catch(function () {
+        err.classList.add('is-visible');
+        btn.disabled = false;
+        btn.textContent = 'Send message';
+      });
+    });
+  })();
+</script>
 </body>
 </html>
