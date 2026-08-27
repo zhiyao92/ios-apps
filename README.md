@@ -31,7 +31,7 @@ Nine live, listed newest-first — the same order the landing page uses.
 
 | App | App Store | Landing page |
 |---|---|---|
-| Bondify: The Couples Edition | [Open](https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667) | — |
+| Bondify: The Couples Edition | [Open](https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667) | [bondify-landing](https://zhiyao92.github.io/bondify-landing/) |
 | DishSpin: What to Eat Wheel | [Open](https://apps.apple.com/us/app/dishspin/id6760835509) | [dishspin-landing](https://zhiyao92.github.io/dishspin-landing/) |
 | Beam: Learn Thai & Speak It | [Open](https://apps.apple.com/us/app/beam-learn-thai-speak-it/id6480093061) | [beam-landing](https://zhiyao92.github.io/beam-landing/) |
 | Provision | [Open](https://apps.apple.com/us/app/provision/id1538554089) | [provision-landing](https://zhiyao92.github.io/provision-landing/) |
