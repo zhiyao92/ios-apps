@@ -27,10 +27,14 @@ two URLs.
 
 ## Apps
 
-Nine live, listed newest-first — the same order the landing page uses.
+Nine live and three awaiting App Review, listed newest-first — the same order the
+landing page uses.
 
 | App | App Store | Landing page |
 |---|---|---|
+| Deploy Studio | *In review* | [deploy-studio-landing](https://zhiyao92.github.io/deploy-studio-landing/) |
+| Tessera | *In review* | [tessera-landing](https://zhiyao92.github.io/tessera-landing/) |
+| Earnings | *In review* | [earnings/](https://zhiyao92.github.io/ios-apps/earnings/) — hosted here, its app repo is private |
 | Bondify: The Couples Edition | [Open](https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667) | [bondify-landing](https://zhiyao92.github.io/bondify-landing/) |
 | DishSpin: What to Eat Wheel | [Open](https://apps.apple.com/us/app/dishspin/id6760835509) | [dishspin-landing](https://zhiyao92.github.io/dishspin-landing/) |
 | Beam: Learn Thai & Speak It | [Open](https://apps.apple.com/us/app/beam-learn-thai-speak-it/id6480093061) | [beam-landing](https://zhiyao92.github.io/beam-landing/) |
@@ -41,7 +45,9 @@ Nine live, listed newest-first — the same order the landing page uses.
 | LDS Priesthood: Ordinances | [Open](https://apps.apple.com/us/app/lds-priesthood-ordinances/id1502509285) | [lds-priesthood-landing](https://zhiyao92.github.io/lds-priesthood-landing/) |
 | LDS Conferences | [Open](https://apps.apple.com/us/app/lds-conferences/id1483787977) | [lds-conferences-landing](https://zhiyao92.github.io/lds-conferences-landing/) |
 
-Each landing page is its own repository — a change there is not a change here.
+Each landing page is its own repository — a change there is not a change here. The
+exception is Earnings, whose page lives in `earnings/` because its app repo is private
+and Pages cannot serve from it.
 
 ## The landing page
 

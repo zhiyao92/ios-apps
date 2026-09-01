@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -13,43 +13,319 @@
 <meta property="og:title" content="Earnings — AdMob &amp; AdSense on your phone">
 <meta property="og:description" content="Your ad revenue at a glance, and an alert the moment a placement stops earning.">
 <link rel="canonical" href="https://zhiyao92.github.io/ios-apps/earnings/">
-<link rel="stylesheet" href="_shared.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #0B7A63;
+    --green-deep: #06302A;
+    --green-bg: #E4F4EF;
+    --mint: #2BB58C;
+    --amber: #D9822B;
+    --amber-bg: #FBEFE2;
+    --bg: #F9FBFA;
+    --surface: #FFFFFF;
+    --surface2: #F1F6F4;
+    --border: #DFE9E5;
+    --text: #0F1A17;
+    --muted: #57685F;
+    --soft: #93A59D;
+    --shadow: 6, 48, 42;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --green: #3FD0AE; --green-deep: #05221E; --green-bg: #12302A;
+      --mint: #5FE0C0; --amber: #E8A85C; --amber-bg: #33260F;
+      --bg: #08110F; --surface: #101D19; --surface2: #0C1714;
+      --border: #1F332C; --text: #E9F2EE; --muted: #93A59D; --soft: #6A7D74;
+      --shadow: 0, 0, 0;
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  img { max-width: 100%; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo img { width: 32px; height: 32px; border-radius: 9px; }
+  .nav-logo span { font-weight: 800; font-size: 1.05rem; color: var(--text); letter-spacing: -0.4px; }
+  .nav-cta {
+    background: var(--text); color: var(--bg); font-weight: 700; font-size: .85rem;
+    padding: 9px 20px; border-radius: 100px; text-decoration: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .nav-cta:hover { opacity: .85; transform: scale(1.03); }
+
+  .hero {
+    padding: 150px 24px 72px; text-align: center;
+    background:
+      radial-gradient(900px 420px at 50% -10%, color-mix(in srgb, var(--green) 20%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  }
+  .hero-icon { width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 26px; display: block; box-shadow: 0 18px 40px rgba(var(--shadow), .28); }
+  .hero h1 { font-size: clamp(2.3rem, 6vw, 3.9rem); line-height: 1.08; letter-spacing: -2px; font-weight: 800; max-width: 15ch; margin: 0 auto 20px; }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(120deg, var(--green), var(--mint));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.sub { font-size: clamp(1.02rem, 2.2vw, 1.2rem); color: var(--muted); max-width: 56ch; margin: 0 auto 34px; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; color: var(--text); font-weight: 600;
+    font-size: 1rem; padding: 15px 26px; border-radius: 100px; text-decoration: none;
+    border: 1px solid var(--border); background: var(--surface); transition: border-color .2s;
+  }
+  .btn-ghost:hover { border-color: var(--soft); }
+  .soon-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-bg); color: var(--green); font-weight: 700; font-size: 1rem;
+    padding: 15px 30px; border-radius: 100px;
+    border: 1px dashed color-mix(in srgb, var(--green) 45%, transparent);
+  }
+  .soon-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(.8); } }
+  @media (prefers-reduced-motion: reduce) { .soon-pill .dot { animation: none; } }
+  .hero-note { margin-top: 18px; font-size: .86rem; color: var(--soft); }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; margin: 56px auto 0; }
+  .stat { background: var(--surface); padding: 24px 16px; text-align: center; }
+  .stat .n { font-size: 1.7rem; font-weight: 800; letter-spacing: -1px; background: linear-gradient(120deg, var(--green), var(--mint)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .l { font-size: .82rem; color: var(--muted); }
+
+  section { padding: 84px 0; }
+  .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: .74rem; font-weight: 800; color: var(--green); margin-bottom: 12px; }
+  h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.15; letter-spacing: -1.2px; font-weight: 800; margin-bottom: 14px; }
+  .lede { color: var(--muted); max-width: 58ch; font-size: 1.04rem; }
+  .section-head { margin-bottom: 44px; }
+  .section-head.center { text-align: center; }
+  .section-head.center .lede { margin: 0 auto; }
+
+  .alerts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .alert { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 16px; padding: 24px; }
+  .alert .tagline { font-size: .74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.6px; color: var(--amber); margin-bottom: 10px; }
+  .alert h3 { font-size: 1.02rem; font-weight: 750; margin-bottom: 7px; letter-spacing: -.3px; }
+  .alert p { color: var(--muted); font-size: .94rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 26px; }
+  .card .ico { width: 42px; height: 42px; border-radius: 12px; margin-bottom: 16px; display: grid; place-items: center; font-size: 1.15rem; background: var(--green-bg); }
+  .card.amber .ico { background: var(--amber-bg); }
+  .card h3 { font-size: 1.06rem; font-weight: 750; margin-bottom: 7px; letter-spacing: -.3px; }
+  .card p { color: var(--muted); font-size: .95rem; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .chip { background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 10px 18px; font-size: .93rem; color: var(--text); }
+
+  .screens { background: linear-gradient(180deg, var(--surface2), var(--bg)); }
+  .shots { display: flex; gap: 20px; overflow-x: auto; padding: 8px 4px 24px; scroll-snap-type: x mandatory; }
+  .shot { flex: 0 0 260px; scroll-snap-align: center; }
+  .shot img { width: 100%; border-radius: 22px; display: block; box-shadow: 0 16px 40px rgba(var(--shadow), .18); }
+
+  .privacy { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 34px; text-align: center; }
+  .privacy h2 { font-size: 1.5rem; }
+  .privacy p { color: var(--muted); max-width: 62ch; margin: 0 auto; }
+  .privacy p + p { margin-top: 12px; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92em; color: var(--text); }
+
+  .final {
+    text-align: center; color: #fff;
+    background:
+      radial-gradient(700px 300px at 50% 0%, color-mix(in srgb, var(--mint) 40%, transparent), transparent 70%),
+      linear-gradient(150deg, var(--green-deep), var(--green));
+    border-radius: 28px; padding: 64px 28px; margin: 0 0 84px;
+  }
+  .final h2 { color: #fff; }
+  .final p { color: rgba(255,255,255,.8); max-width: 48ch; margin: 0 auto 28px; }
+  .final .soon-pill { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.4); }
+  .final .soon-pill .dot { background: #fff; }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 0 44px; font-size: .88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+  .foot-links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .legal { font-size: .8rem; color: var(--soft); max-width: 62ch; margin-top: 4px; }
+
+  @media (max-width: 720px) {
+    nav { padding: 12px 18px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 60px 0; }
+    .final { border-radius: 22px; padding: 48px 22px; }
+  }
+</style>
 </head>
 <body>
-<div class="wrap">
-<header class="site">
-  <a class="brand" href="./" style="color:inherit">
-    <img src="assets/app-icon.png" alt="">
-    <b>Earnings</b>
-  </a>
+
+<nav>
+  <a class="nav-logo" href="#top"><img src="assets/app-icon.png" alt=""><span>Earnings</span></a>
+  <a class="nav-cta" href="#coming">Coming soon</a>
+</nav>
+
+<header class="hero" id="top">
+  <img class="hero-icon" src="assets/app-icon.png" alt="Earnings app icon">
+  <h1>Know when <em>your ads break</em></h1>
+  <p class="sub">Earnings opens on a sentence, not a spreadsheet. “Everything looks normal” — or what isn't, and which app it's in. You find out from a notification, not by going looking.</p>
+  <div class="cta-row">
+    <span class="soon-pill"><span class="dot"></span>Coming to the App Store</span>
+    <a class="btn-ghost" href="#watches">What it watches for</a>
+  </div>
+  <p class="hero-note">iPhone · AdMob &amp; AdSense · Read-only access, no server</p>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">2</div><div class="l">ad networks</div></div>
+      <div class="stat"><div class="n">8</div><div class="l">metrics tracked</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">time periods</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">servers involved</div></div>
+    </div>
+  </div>
 </header>
-<h1>Know when your ads break.</h1>
-<p class="lede">Earnings opens on a sentence, not a spreadsheet. “Everything looks normal” — or what isn’t, and which app it’s in.</p>
 
-<div class="card">
-  <h3 style="margin-top:0">It watches for the things a total hides</h3>
-  <ul>
-    <li>A placement that stopped showing ads — requests going out, nothing coming back.</li>
-    <li>Requests that are barely being filled, which is usually a setup problem, not demand.</li>
-    <li>An app clicking far above the rest of your account — what accidental clicks look like before anyone tells you.</li>
-  </ul>
-  <p style="margin-bottom:0">You find out from a notification, not by going looking.</p>
+<section id="watches">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">What it watches for</p>
+      <h2>The things a total hides</h2>
+      <p class="lede">Your revenue can look fine while one placement quietly stops working. These are the three patterns worth interrupting you for.</p>
+    </div>
+    <div class="alerts">
+      <div class="alert">
+        <div class="tagline">Broken placement</div>
+        <h3>Requests going out, nothing coming back</h3>
+        <p>An ad unit that stopped showing ads entirely. It normally means a release broke the placement — and it's invisible in the total, because the unit simply earns little.</p>
+      </div>
+      <div class="alert">
+        <div class="tagline">Barely filling</div>
+        <h3>Requests that almost never get an ad</h3>
+        <p>A very low match rate is usually a configuration problem rather than weak demand — and it's the kind that persists quietly for weeks.</p>
+      </div>
+      <div class="alert">
+        <div class="tagline">Invalid traffic risk</div>
+        <h3>An app clicking far above the rest</h3>
+        <p>The signature of accidental clicks, usually an ad sitting too close to something tappable. Worth knowing early: enforcement lands on the whole publisher account, not one app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">Deliberately quiet</p>
+      <h2>An alert you'll still trust in a month</h2>
+      <p class="lede">Thresholds are conservative on purpose, the same finding won't repeat for hours, and only the most serious few are sent at once. An alert that cries wolf gets ignored, which is worse than not having one.</p>
+    </div>
+    <div class="chips">
+      <div class="chip">Conservative thresholds</div>
+      <div class="chip">No repeats within the cooldown</div>
+      <div class="chip">Two most serious per round</div>
+      <div class="chip">Context-only findings never notify</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">The numbers</p>
+      <h2>When you do want to look</h2>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">📅</div>
+        <h3>Six periods, always compared</h3>
+        <p>Today, yesterday, last 7 or 30 days, this month, last month — each against the period before it, so you see direction and not just a total.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔍</div>
+        <h3>Broken down three ways</h3>
+        <p>By app or site, by ad unit, or by country — so “revenue is down” becomes “revenue is down in one place”.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📊</div>
+        <h3>The metrics that explain it</h3>
+        <p>Earnings, impressions, clicks and requests, plus match rate, show rate, eCPM and RPM — the ones that say <em>why</em> a number moved.</p>
+      </div>
+      <div class="card amber">
+        <div class="ico">📱</div>
+        <h3>A widget in three sizes</h3>
+        <p>Including the lock screen. It refreshes on its own — and it's what makes an alert reach you without opening anything.</p>
+      </div>
+      <div class="card amber">
+        <div class="ico">🔗</div>
+        <h3>Both networks, one app</h3>
+        <p>AdMob and AdSense side by side, in the same shapes, so you don't hold two mental models.</p>
+      </div>
+      <div class="card amber">
+        <div class="ico">🔒</div>
+        <h3>Read-only by construction</h3>
+        <p>The access it asks for can read your reports and nothing else. It cannot change a setting, an ad unit, or a payment detail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screens">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">Inside the app</p>
+      <h2>A sentence first, the numbers after</h2>
+    </div>
+    <div class="shots">
+      <img src="screenshots/01_alert.png" alt="The home screen flagging one thing worth a look" class="shot" loading="lazy">
+      <img src="screenshots/02_clear.png" alt="The home screen when everything looks normal" class="shot" loading="lazy">
+      <img src="screenshots/03_numbers.png" alt="Earnings figures compared against the previous period" class="shot" loading="lazy">
+      <img src="screenshots/04_breakdown.png" alt="Revenue broken down by app" class="shot" loading="lazy">
+      <img src="screenshots/05_detail.png" alt="Detail for a single app" class="shot" loading="lazy">
+      <img src="screenshots/06_widget.png" alt="The Home Screen and lock screen widgets" class="shot" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="privacy">
+      <h2>Built small and private</h2>
+      <p>There is no server. Your figures go from Google to your phone and nowhere else. Access is read-only — the scopes the app requests end in <span class="mono">.readonly</span>, so it can read your AdMob and AdSense reports and cannot change anything.</p>
+      <p>Nothing is uploaded, shared or sold. See the <a href="privacy.html">privacy policy</a>.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="final" id="coming">
+    <h2>Nearly there</h2>
+    <p>Earnings is built and waiting on App Review. When it lands, this button becomes the download.</p>
+    <span class="soon-pill"><span class="dot"></span>Coming to the App Store</span>
+  </div>
 </div>
 
-<h2>The numbers, when you want them</h2>
-<p>Today, yesterday, last 7 or 30 days, this month, last month — each compared against the period before it, so you see direction and not just a total. Break down by app, ad unit or country. Earnings, impressions, clicks, requests, match rate, show rate, eCPM and RPM.</p>
-<p>A widget in three sizes, including the lock screen, refreshes on its own. If the app is doing its job, you’ll rarely open it.</p>
-
-<h2>Built small and private</h2>
-<p>There is no server. Your figures go from Google to your phone and nowhere else. Access is read-only — the app can read your AdMob and AdSense reports and cannot change anything. Nothing is uploaded, shared or sold. See the <a href="privacy.html">privacy policy</a>.</p>
-
-<h2>Support</h2>
-<p>Questions, bugs, or anything else: <a href="mailto:kelvin.vins@gmail.com">kelvin.vins@gmail.com</a>.</p>
-<footer class="site">
-  <a href="./">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a><br>
-  Earnings is an independent app. It is not affiliated with, endorsed by, or sponsored by Google.
-  <br><a href="../">All of Kelvin's apps</a>
-</footer>
+<div class="wrap">
+  <footer>
+    <div>
+      <div>© 2026 Kelvin Tan</div>
+      <p class="legal">Earnings is an independent app. It is not affiliated with, endorsed by, or sponsored by Google. AdMob and AdSense are trademarks of Google LLC.</p>
+    </div>
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:kelvin.vins@gmail.com?subject=Earnings%20support">Support</a>
+      <a href="../">More apps</a>
+    </div>
+  </footer>
 </div>
+
 </body>
 </html>

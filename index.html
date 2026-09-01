@@ -42,6 +42,9 @@
     "https://github.com/zhiyao92"
   ],
   "owns": [
+    { "@type": "SoftwareApplication", "name": "Deploy Studio", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS", "url": "https://zhiyao92.github.io/deploy-studio-landing/" },
+    { "@type": "SoftwareApplication", "name": "Tessera", "applicationCategory": "UtilitiesApplication", "operatingSystem": "iOS", "url": "https://zhiyao92.github.io/tessera-landing/" },
+    { "@type": "SoftwareApplication", "name": "Earnings", "applicationCategory": "BusinessApplication", "operatingSystem": "iOS", "url": "https://zhiyao92.github.io/ios-apps/earnings/" },
     { "@type": "SoftwareApplication", "name": "Bondify: The Couples Edition", "applicationCategory": "LifestyleApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667" },
     { "@type": "SoftwareApplication", "name": "DishSpin: What to Eat Wheel", "applicationCategory": "LifestyleApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/dishspin/id6760835509" },
     { "@type": "SoftwareApplication", "name": "Beam: Learn Thai & Speak It", "applicationCategory": "EducationApplication", "operatingSystem": "iOS", "url": "https://apps.apple.com/us/app/beam-learn-thai-speak-it/id6480093061" },
@@ -536,6 +539,17 @@
     color: var(--text-secondary);
   }
   .btn-ghost:hover { color: var(--text); }
+  .btn-soon {
+    background: transparent;
+    border-color: var(--border-strong);
+    border-style: dashed;
+    color: var(--text-tertiary);
+    cursor: default;
+  }
+  .timeline-year.soon {
+    color: var(--accent);
+    letter-spacing: 0.03em;
+  }
 
   /* ---------- footer ---------- */
   footer {
@@ -667,10 +681,79 @@
 
   <div id="tab-apps" class="tab-panel active">
 
-  <p class="label">Apps &middot; 9 in focus</p>
-  <p class="section-note">25 shipped since 2016 — cut down to the 9 below so each one gets real attention.</p>
+  <p class="label">Apps &middot; 9 live, 3 in review</p>
+  <p class="section-note">25 shipped since 2016 — cut down to the 9 live below so each one gets real attention. Three more are built and waiting on App Review.</p>
 
   <main class="timeline">
+
+    <div class="timeline-row">
+      <div class="timeline-year soon">SOON</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+    <article class="card" id="deploy-studio" style="--app-accent: #1D63C8">
+      <div class="card-head">
+        <img src="icons/deploy-studio.png" alt="" />
+        <div>
+          <h2>Deploy Studio</h2>
+          <div class="tag">Ship Releases From Your Phone</div>
+        </div>
+      </div>
+      <p>
+        Your build is ready and you're not at your desk &mdash; Deploy Studio submits the release from your phone, and says plainly what's still missing.
+      </p>
+      <div class="actions">
+        <span class="btn btn-soon">Coming soon</span>
+        <a class="btn btn-ghost" href="https://zhiyao92.github.io/deploy-studio-landing/" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </article>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year soon">SOON</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+    <article class="card" id="tessera" style="--app-accent: #3A4FD0">
+      <div class="card-head">
+        <img src="icons/tessera.png" alt="" />
+        <div>
+          <h2>Tessera</h2>
+          <div class="tag">Your Cards, In Apple Wallet</div>
+        </div>
+      </div>
+      <p>
+        The loyalty card you never have on you when it counts &mdash; Tessera reads it once and puts it in Apple Wallet, barcode and all.
+      </p>
+      <div class="actions">
+        <span class="btn btn-soon">Coming soon</span>
+        <a class="btn btn-ghost" href="https://zhiyao92.github.io/tessera-landing/" target="_blank" rel="noopener">Learn more</a>
+      </div>
+    </article>
+      </div>
+    </div>
+
+    <div class="timeline-row">
+      <div class="timeline-year soon">SOON</div>
+      <div class="timeline-marker"><span class="timeline-dot"></span></div>
+      <div class="timeline-content">
+    <article class="card" id="earnings" style="--app-accent: #0B7A63">
+      <div class="card-head">
+        <img src="icons/earnings.png" alt="" />
+        <div>
+          <h2>Earnings</h2>
+          <div class="tag">AdMob &amp; AdSense Revenue</div>
+        </div>
+      </div>
+      <p>
+        A placement stops earning and nobody tells you for a week &mdash; Earnings notices the same day and says which app it's in.
+      </p>
+      <div class="actions">
+        <span class="btn btn-soon">Coming soon</span>
+        <a class="btn btn-ghost" href="earnings/">Learn more</a>
+      </div>
+    </article>
+      </div>
+    </div>
 
     <div class="timeline-row">
       <div class="timeline-year">2026</div>
