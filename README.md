@@ -27,13 +27,13 @@ two URLs.
 
 ## Apps
 
-Nine live and three awaiting App Review, listed newest-first — the same order the
+Eleven live and one awaiting App Review, listed newest-first — the same order the
 landing page uses.
 
 | App | App Store | Landing page |
 |---|---|---|
-| Deploy Studio | *In review* | [deploy-studio-landing](https://zhiyao92.github.io/deploy-studio-landing/) |
-| Tessera | *In review* | [tessera-landing](https://zhiyao92.github.io/tessera-landing/) |
+| Deploy Studio | [Open](https://apps.apple.com/my/app/deploy-studio/id6806610127) | [deploy-studio-landing](https://zhiyao92.github.io/deploy-studio-landing/) |
+| Tessera | [Open](https://apps.apple.com/my/app/tessera-cards-to-wallet/id6805912317) | [tessera-landing](https://zhiyao92.github.io/tessera-landing/) |
 | Earnings | *In review* | [earnings/](https://zhiyao92.github.io/ios-apps/earnings/) — hosted here, its app repo is private |
 | Bondify: The Couples Edition | [Open](https://apps.apple.com/us/app/bondify-the-couples-edition/id6761910667) | [bondify-landing](https://zhiyao92.github.io/bondify-landing/) |
 | DishSpin: What to Eat Wheel | [Open](https://apps.apple.com/us/app/dishspin/id6760835509) | [dishspin-landing](https://zhiyao92.github.io/dishspin-landing/) |
